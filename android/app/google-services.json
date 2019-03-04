@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "34815207882",
+    "firebase_url": "https://broke-c38d3.firebaseio.com",
+    "project_id": "broke-c38d3",
+    "storage_bucket": "broke-c38d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:34815207882:android:1cacdb75c2d54725",
+        "android_client_info": {
+          "package_name": "com.manangatangy.broke"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "34815207882-vecqijjm35qtrhu2d31d5tdsu6vmu2q1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.manangatangy.broke",
+            "certificate_hash": "0882bf089097e09427a7e09c661a437e4ae46ea8"
+          }
+        },
+        {
+          "client_id": "34815207882-lm07lv8qkff616coi43a298964sdb5jf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpSfoXXadhJq8u7ld16JTWuC2iYwwL3BU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "34815207882-lm07lv8qkff616coi43a298964sdb5jf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "34815207882-19n0fmot3dvp7a48b9b9ehbba0md7f5v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.manangatangy.broke"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
