@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 //        - All other widgets which are able to access the data
 void main() =>
     runApp(
-      AppModelProvider(
+      FirebaseLoginxx(
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Recipes',

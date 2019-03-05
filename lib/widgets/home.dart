@@ -14,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  AppModel appModel;
+//  AppModel appModel;
   List<Recipe> recipes = getRecipes();
   List<String> userFavorites = getFavoritesIDs();
 
@@ -122,7 +122,7 @@ class HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     // Build the content depending on the state:
-    appModel = AppModelProvider.of(context).appModel;
+    appModel = FirebaseLoginxx.of(context).appModel;
     return _buildContent();
   }
 }

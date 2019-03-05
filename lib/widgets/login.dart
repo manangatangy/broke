@@ -301,13 +301,13 @@ class LoginScreen extends StatelessWidget {
               SignInButton(
                 text: "Sign in with Email",
                 asset: "assets/mail_icon.png",
-                onPressed: () => AppModelProvider.of(context).signInWithGoogle(),
+                onPressed: () => FirebaseLoginxx.of(context).signInWithGoogle(),
               ),
               SizedBox(height: 30.0),
               SignInButton(
                 text: "Sign in with Google",
                 asset: "assets/g_logo.png",
-                onPressed: () => AppModelProvider.of(context).signInWithGoogle(),
+                onPressed: () => FirebaseLoginxx.of(context).signInWithGoogle(),
               ),
             ],
           ),
