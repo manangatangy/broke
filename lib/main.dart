@@ -1,7 +1,30 @@
-import 'package:broke/app.dart';
+import 'package:broke/models/app_model.dart';
+import 'package:broke/widgets/home.dart';
+import 'package:broke/widgets/login.dart';
+import 'package:broke/widgets/theme.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(BrokeApp());
+// - StateWidget incl. state data
+//    - RecipesApp
+//        - All other widgets which are able to access the data
+void main() =>
+    runApp(
+      AppModelProvider(
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Recipes',
+          theme: buildTheme(),
+          routes: {
+            // If you're using navigation routes, Flutter needs a base route.
+            // We're going to change this route once we're ready with
+            // implementation of HomeScreen.
+            '/': (context) => HomeScreen(),
+            '/login': (context) => LoginScreen(),
+          },
+        ),
+      ),
+    );
+
 
 // Photo by Brooke Lark on Unsplash
 
@@ -24,3 +47,4 @@ void main() => runApp(BrokeApp());
 // I also came across this: https://www.gotut.net/flutter-firestore-tutorial-part-1/
 // which seems not bad
 
+// https://github.com/tattwei46/flutter_login_demo
