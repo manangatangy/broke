@@ -15,6 +15,7 @@ void mainX() =>
           debugShowCheckedModeBanner: false,
           title: 'Recipes',
           theme: buildTheme(),
+          initialRoute: "/login",
           routes: {
             // If you're using navigation routes, Flutter needs a base route.
             // We're going to change this route once we're ready with
@@ -73,8 +74,8 @@ class HomeScreenState extends State<HomeScreen> {
       return _buildTabView(
         body: _buildLoadingIndicator(),
       );
-    } else if (!appModel.isLoading && appModel.user == null) {
-      return new LoginScreenX();
+//    } else if (!appModel.isLoading && appModel.user == null) {
+//      return new LoginScreenX();
     } else {
       return _buildTabView(
         body: _buildTabsContent(),
@@ -224,6 +225,18 @@ class _AppModelProviderXState extends State<AppModelProviderX> {
     }
   }
 
+  Future<Null> signOutOfGoogle() async {
+    // Sign out from Firebase and Google
+    await FirebaseAuth.instance.signOut();
+    await googleSignIn.signOut();
+    // Clear variables
+    googleAccount = null;
+//    state.user = null;
+//    setState(() {
+//      state = StateModel(user: null);
+//    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return new _ProviderWidget(
@@ -283,6 +296,17 @@ class LoginScreenX extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               _buildText(),
+              SizedBox(height: 50.0),
+              SignInButton(
+                text: "Goto home",
+                asset: "assets/mail_icon.png",
+                onPressed: () {
+                  AppModelProviderX.of(context).appModel.isLoading = true;
+                  Navigator.pop(
+                    context,
+                  );
+                },
+              ),
               SizedBox(height: 50.0),
               SignInButton(
                 text: "Sign in with Email",

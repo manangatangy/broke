@@ -1,4 +1,5 @@
 import 'package:broke/interim.dart';
+import 'package:broke/interim2.dart';
 import 'package:broke/models/app_model.dart';
 import 'package:broke/widgets/home.dart';
 import 'package:broke/widgets/login.dart';
@@ -9,7 +10,7 @@ import 'package:flutter/material.dart';
 // - StateWidget incl. state data
 //    - RecipesApp
 //        - All other widgets which are able to access the data
-void main() => mainX();
+void main() => main2();
 //    runApp(
 //      FirebaseLogin(
 //        child: MaterialApp(
