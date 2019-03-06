@@ -1,3 +1,4 @@
+import 'package:broke/interim.dart';
 import 'package:broke/models/app_model.dart';
 import 'package:broke/widgets/home.dart';
 import 'package:broke/widgets/login.dart';
@@ -8,19 +9,19 @@ import 'package:flutter/material.dart';
 // - StateWidget incl. state data
 //    - RecipesApp
 //        - All other widgets which are able to access the data
-void main() =>
-    runApp(
-      FirebaseLogin(
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Recipes',
-          theme: buildTheme(),
-          home: FirebaseLogin(
-            child: HomeScreen(),
-          ),
-        ),
-      ),
-    );
+void main() => mainX();
+//    runApp(
+//      FirebaseLogin(
+//        child: MaterialApp(
+//          debugShowCheckedModeBanner: false,
+//          title: 'Recipes',
+//          theme: buildTheme(),
+//          home: FirebaseLogin(
+//            child: HomeScreen(),
+//          ),
+//        ),
+//      ),
+//    );
 
 
 // Photo by Brooke Lark on Unsplash
