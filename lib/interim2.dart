@@ -9,20 +9,20 @@ import 'package:scoped_model/scoped_model.dart';
 
 void main2() => runApp(MyApp());
 
-enum AuthStatus { UNKNOWN, NOT_SIGNED_IN, SIGNED_IN, }
+enum AuthStatus { INIT, UNKNOWN, NOT_SIGNED_IN, SIGNED_IN, }
 
 class SignInModel extends Model {
 
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = new GoogleSignIn();
-  AuthStatus authStatus = AuthStatus.UNKNOWN;
+  AuthStatus authStatus = AuthStatus.INIT;
   FirebaseUser firebaseUser;
 
   /// First checks if there is a current user.  If not, then
   /// checks if user is already signed in to google, or can be signed
   /// in (silently), and then signs into using google.  Otherwise just turns
   /// off the loading spinner.
-  Future<Null> init() async {
+  Future<AuthStatus> init() async {
     print("SignInModel.init");
     FirebaseUser user = await firebaseAuth.currentUser();
     print("SignInModel.init:currentUser $user");
@@ -45,11 +45,12 @@ class SignInModel extends Model {
       }
     }
     notifyListeners();
+    return authStatus;
   }
 
   /// Starts the interactive sign-in to google (unless already signed in)
   /// and then signs in to firebase, using the google account.
-  Future<Null> signInWithGoogle() async {
+  Future<FirebaseUser> signInWithGoogle() async {
     GoogleSignInAccount googleAccount = await googleSignIn.signIn();
     if (googleAccount != null) {
       FirebaseUser user = await _googleSignIntoFirebase(googleAccount);
@@ -58,6 +59,7 @@ class SignInModel extends Model {
       print("SignInModel.signInWithGoogle:signed in via google $firebaseUser");
       notifyListeners();
     }
+    return firebaseUser;
   }
 
   /// If there is a currently signed in account, return it.
@@ -94,13 +96,13 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Recipes',
           theme: buildTheme(),
-          initialRoute: "/login",
+          initialRoute: "login",
           routes: {
             // If you're using navigation routes, Flutter needs a base route.
             // We're going to change this route once we're ready with
             // implementation of HomeScreen.
             '/': (context) => Page1(),
-            '/login': (context) => PageLogin(),
+            'login': (context) => PageLogin(),
           },
         )
     );
@@ -134,13 +136,31 @@ class PageLogin extends StatelessWidget {
         title: Text("page 2 Route"),
       ),
       body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            Navigator.pop(context);
+        child: ScopedModelDescendant<SignInModel>(
+          builder: (context, child, model) {
+            print("PageLogin.build: ${model.authStatus}");
+            switch (model.authStatus) {
+              case AuthStatus.INIT:
+                model.init();
+                return CircularProgressIndicator();
+                break;
+              case AuthStatus.UNKNOWN:
+                return Text("UNKNOWN");
+                break;
+              case AuthStatus.NOT_SIGNED_IN:
+                return RaisedButton(
+                    child: Text("NOT SIGNED IN, click to sign in with google"),
+                    onPressed: () {
+                      model.signInWithGoogle();
+                    },
+                  );
+                break;
+              case AuthStatus.SIGNED_IN:
+                Navigator.pushReplacementNamed(context, "/");
+                return Text("status is SIGNED IN");
+                break;
+            }
           },
-          child: ScopedModelDescendant<SignInModel>(
-            builder: (context, child, model) => new Text('authStatus=${model.authStatus}'),
-          ),
         ),
       ),
     );
