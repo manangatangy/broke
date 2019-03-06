@@ -121,7 +121,7 @@ class FirebaseLoginState extends State<FirebaseLogin> {
     if (authStatus == AuthStatus.LOGGED_IN) {
       return widget.child;
     } else if (authStatus == AuthStatus.NOT_LOGGED_IN) {
-      return LoginScreen();
+      return Container(); //LoginScreen();
     }
     return Scaffold(
       body: Container(

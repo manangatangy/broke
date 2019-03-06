@@ -1,23 +1,24 @@
+import 'package:broke/models/sign_in_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:broke/services/authentication.dart';
 
-class EmailLoginPage extends StatefulWidget {
+class EmailLoginScreen extends StatefulWidget {
 
-  final Auth auth;
-  final VoidCallback onSignedIn;
+  final SignInModel signInModel;
+//  final VoidCallback onSignedIn;
 
-  EmailLoginPage({
-    this.auth,
-    this.onSignedIn,
+  EmailLoginScreen({
+    this.signInModel,
   });
 
   @override
-  State<StatefulWidget> createState() => new _EmailLoginPageState();
+  State<StatefulWidget> createState() => new _EmailLoginScreenState();
 }
 
 enum FormMode { LOGIN, SIGNUP }
 
-class _EmailLoginPageState extends State<EmailLoginPage> {
+class _EmailLoginScreenState extends State<EmailLoginScreen> {
+  bool fake = true;
   final _formKey = new GlobalKey<FormState>();
 
   String _email;
@@ -46,25 +47,39 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
       _isLoading = true;
     });
     if (_validateAndSave()) {
-      String userId = "";
       try {
-        if (_formMode == FormMode.LOGIN) {
-          userId = await widget.auth.signIn(_email, _password);
-          print('Signed in: $userId');
-        } else {
-          userId = await widget.auth.signUp(_email, _password);
-          widget.auth.sendEmailVerification();
+        FirebaseUser user;
+        if (_formMode == FormMode.SIGNUP) {
+          if (fake) {
+            print('fake signUp');
+          } else {
+            user = await widget.signInModel.signUpWithEmail(_email, _password);
+            widget.signInModel.sendEmailVerification(user);
+          }
           _showVerifyEmailSentDialog();
-          print('Signed up user: $userId');
+          print('Signed up and emailed verification request: $user');
+        } else {
+          if (fake) {
+            print('fake signIn');
+          } else {
+            user = await widget.signInModel.signInWithEmail(_email, _password);
+          }
+          print('Signed in: $user');
+          String userId = user?.uid;
+          if (fake) {
+            userId = "fake";
+          }
+          if (userId.length > 0 && userId != null) {
+            // Return back from this widget to previous,
+            // and signal signed in status change -> signed-in
+            Navigator.pop(context);
+            widget.signInModel.haveSignedIn(user);
+            return;   // Bypass the setState.
+          }
         }
         setState(() {
           _isLoading = false;
         });
-
-        if (userId.length > 0 && userId != null && _formMode == FormMode.LOGIN) {
-          widget.onSignedIn();
-        }
-
       } catch (e) {
         print('Error: $e');
         setState(() {
@@ -190,7 +205,7 @@ class _EmailLoginPageState extends State<EmailLoginPage> {
         child: CircleAvatar(
           backgroundColor: Colors.transparent,
           radius: 48.0,
-          child: Image.asset('assets/flutter-icon.png'),
+          child: Image.asset('assets/mail_icon.png'),  // was flutter-icon
         ),
       ),
     );

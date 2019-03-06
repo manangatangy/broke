@@ -1,16 +1,18 @@
 import 'package:broke/interim.dart';
 import 'package:broke/interim2.dart';
 import 'package:broke/models/app_model.dart';
+import 'package:broke/models/sign_in_model.dart';
 import 'package:broke/widgets/home.dart';
 import 'package:broke/widgets/login.dart';
 import 'package:broke/widgets/root.dart';
 import 'package:broke/widgets/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 // - StateWidget incl. state data
 //    - RecipesApp
 //        - All other widgets which are able to access the data
-void main() => main2();
+void main() => runApp(MyApp());
 //    runApp(
 //      FirebaseLogin(
 //        child: MaterialApp(
@@ -24,6 +26,29 @@ void main() => main2();
 //      ),
 //    );
 
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // First, create a `ScopedModel` widget. This will provide
+    // the `model` to the children that request it.
+    return ScopedModel<SignInModel>(
+        model: SignInModel(),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Recipes',
+          theme: buildTheme(),
+          initialRoute: "login",
+          routes: {
+            // If you're using navigation routes, Flutter needs a base route.
+            // We're going to change this route once we're ready with
+            // implementation of HomeScreen.
+            '/': (context) => Page1(),
+            'login': (context) =>LoginScreen(),
+          },
+        )
+    );
+  }
+}
 
 // Photo by Brooke Lark on Unsplash
 
