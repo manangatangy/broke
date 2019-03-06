@@ -1,6 +1,7 @@
 import 'package:broke/models/app_model.dart';
 import 'package:broke/widgets/home.dart';
 import 'package:broke/widgets/login.dart';
+import 'package:broke/widgets/root.dart';
 import 'package:broke/widgets/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -9,18 +10,14 @@ import 'package:flutter/material.dart';
 //        - All other widgets which are able to access the data
 void main() =>
     runApp(
-      FirebaseLoginxx(
+      FirebaseLogin(
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Recipes',
           theme: buildTheme(),
-          routes: {
-            // If you're using navigation routes, Flutter needs a base route.
-            // We're going to change this route once we're ready with
-            // implementation of HomeScreen.
-            '/': (context) => HomeScreen(),
-            '/login': (context) => LoginScreen(),
-          },
+          home: FirebaseLogin(
+            child: HomeScreen(),
+          ),
         ),
       ),
     );

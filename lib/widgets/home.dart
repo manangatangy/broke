@@ -48,19 +48,19 @@ class HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildContent() {
-    if (appModel.isLoading) {
-      return _buildTabView(
-        body: _buildLoadingIndicator(),
-      );
-    } else if (!appModel.isLoading && appModel.user == null) {
-      return new LoginScreen();
-    } else {
-      return _buildTabView(
-        body: _buildTabsContent(),
-      );
-    }
-  }
+//  Widget _buildContent() {
+//    if (appModel.isLoading) {
+//      return _buildTabView(
+//        body: _buildLoadingIndicator(),
+//      );
+//    } else if (!appModel.isLoading && appModel.user == null) {
+//      return new LoginScreen();
+//    } else {
+//      return _buildTabView(
+//        body: _buildTabsContent(),
+//      );
+//    }
+//  }
 
   Center _buildLoadingIndicator() {
     return Center(
@@ -121,8 +121,8 @@ class HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Build the content depending on the state:
-    appModel = FirebaseLoginxx.of(context).appModel;
-    return _buildContent();
+    return _buildTabView(
+      body: _buildTabsContent(),
+    );
   }
 }

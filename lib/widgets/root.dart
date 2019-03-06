@@ -3,26 +3,31 @@ import 'package:broke/widgets/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:scoped_model/scoped_model.dart';
+
+/// The various fields in the FirebaseLoginState are made available via
+/// a scopedModel.
+class FirebaseRoot extends Model {
+  final FirebaseLoginState state;
+
+  FirebaseRoot({
+    this.state,
+  });
+
+  static FirebaseRoot of(BuildContext context) => ScopedModel.of<FirebaseRoot>(context);
+}
 
 /// Checks for different login methods and builds a login screen if necessary.
-/// Also provides a inherited widget access to some global firebase stuff via
-/// the State.
+/// Also provides a scoped model access to some global firebase stuff.
 class FirebaseLogin extends StatefulWidget {
-  final Auth auth;
   final Widget child;
 
   FirebaseLogin({
-    this.auth,
     this.child,
   });
 
   @override
   State<StatefulWidget> createState() => new FirebaseLoginState();
-
-  static FirebaseLoginState of(BuildContext context) {
-    return (context.inheritFromWidgetOfExactType(RootData) as RootData).firebaseLoginState;
-  }
-
 }
 
 enum AuthStatus {
@@ -32,15 +37,11 @@ enum AuthStatus {
 }
 
 class FirebaseLoginState extends State<FirebaseLogin> {
-
-  AuthStatus authStatus = AuthStatus.UNKNOWN;
-  FirebaseUser firebaseUser;
-
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = new GoogleSignIn();
 
-
-  String userUid = "";
+  AuthStatus authStatus = AuthStatus.UNKNOWN;
+  FirebaseUser firebaseUser;
 
   @override
   void initState() {
@@ -54,8 +55,8 @@ class FirebaseLoginState extends State<FirebaseLogin> {
   /// off the loading spinner.
   Future<Null> initUser() async {
     print("initUser");
-    FirebaseUser user = await widget.auth.getCurrentUser();
-    print("initUser:getCurrentUser $user");
+    FirebaseUser user = await firebaseAuth.currentUser();
+    print("initUser:currentUser $user");
     if (user?.uid != null) {
       setState(() {
         authStatus = AuthStatus.LOGGED_IN;
@@ -96,29 +97,22 @@ class FirebaseLoginState extends State<FirebaseLogin> {
     }
   }
 
-
-  void _onLoggedIn() {
-    widget.auth.getCurrentUser().then((user){
+  /// This should be called by a child in order to change state to logged in/out.
+  void onSignedInOrOut() {
+    firebaseAuth.currentUser().then((user) {
+      print("onSignedInOrOut:currentUser $user");
       setState(() {
-        _userId = user.uid.toString();
+        authStatus = (user?.uid != null) ? AuthStatus.LOGGED_IN : AuthStatus.NOT_LOGGED_IN;
+        firebaseUser = user;
+        print("onSignedInOrOut: authStatus:$authStatus");
       });
-    });
-    setState(() {
-      authStatus = AuthStatus.LOGGED_IN;
-    });
-  }
-
-  void _onSignedOut() {
-    setState(() {
-      authStatus = AuthStatus.NOT_LOGGED_IN;
-      _userId = "";
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return new RootData(
-      firebaseLoginState: this,
+    return ScopedModel<FirebaseRoot>(
+      model: FirebaseRoot(state: this),
       child: buildContent(context),
     );
   }
@@ -127,10 +121,7 @@ class FirebaseLoginState extends State<FirebaseLogin> {
     if (authStatus == AuthStatus.LOGGED_IN) {
       return widget.child;
     } else if (authStatus == AuthStatus.NOT_LOGGED_IN) {
-      return LoginSignUpPage(
-        auth: widget.auth,
-        onSignedIn: _onLoggedIn,
-      );
+      return LoginScreen();
     }
     return Scaffold(
       body: Container(
@@ -143,19 +134,3 @@ class FirebaseLoginState extends State<FirebaseLogin> {
 
 //        if (_userId.length > 0 && _userId != null) {
 //        } else return _buildWaitingScreen();
-
-class RootData extends InheritedWidget {
-  final FirebaseLoginState firebaseLoginState;
-
-  RootData({
-    Key key,
-    @required Widget child,
-    @required this.firebaseLoginState,
-  }) : super(key: key, child: child);
-
-  // Rebuild the widgets that inherit from this widget
-  // on every rebuild of xx
-  @override
-  bool updateShouldNotify(RootData old) => true;
-}
-

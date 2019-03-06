@@ -1,20 +1,134 @@
 import 'package:broke/models/app_model.dart';
 import 'package:broke/services/authentication.dart';
+import 'package:broke/widgets/root.dart';
+import 'package:broke/widgets/theme.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class LoginSignUpPage extends StatefulWidget {
-  LoginSignUpPage({this.auth, this.onSignedIn});
+/// This is the entry login screen with buttons for login by email and google.
+class LoginScreen extends StatelessWidget {
 
-  final Auth auth;
+  @override
+  Widget build(BuildContext context) {
+    // New private method which includes the background image:
+    BoxDecoration _buildBackground() {
+      return BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/brooke-lark-385507-unsplash.jpg"),
+          fit: BoxFit.cover,
+        ),
+      );
+    }
+
+    Text _buildText() {
+      return Text(
+        'Recipes',
+        style: Theme.of(context).textTheme.headline,
+        textAlign: TextAlign.center,
+      );
+    }
+
+    // MaterialApp needed for the navigation to emailLogin
+    return Scaffold(
+      // We do not use backgroundColor property anymore.
+      // New Container widget wraps our Center widget:
+      body: Container(
+        decoration: _buildBackground(),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              _buildText(),
+              SizedBox(height: 50.0),
+              SignInButton(
+                text: "Sign in with Email",
+                asset: "assets/mail_icon.png",
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => EmailLoginPage(
+                      firebaseAuth: FirebaseRoot.of(context).state.firebaseAuth,
+                      onSignedIn: () => FirebaseRoot.of(context).state.onSignedInOrOut(),
+                    )),
+                  );
+                },
+              ),
+              SizedBox(height: 30.0),
+              SignInButton(
+                text: "Sign in with Google",
+                asset: "assets/g_logo.png",
+                onPressed: () => FirebaseRoot.of(context).state.signInWithGoogle(),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class SignInButton extends StatelessWidget {
+  final String text;
+  final String asset;
+  final Function onPressed;
+
+  SignInButton({
+    this.text,
+    this.asset,
+    this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+      height: 40.0,
+      onPressed: this.onPressed,
+      color: Colors.white,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Image.asset(
+            asset,
+            height: 48.0,
+            width: 48.0,
+          ),
+          SizedBox(width: 24.0),
+          Opacity(
+            opacity: 0.54,
+            child: Text(
+              text,
+              style: TextStyle(
+                fontFamily: 'Roboto-Medium',
+                fontSize: 22,
+                color: Colors.black,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class EmailLoginPage extends StatefulWidget {
+  EmailLoginPage({
+    this.firebaseAuth,
+    this.onSignedIn,
+  });
+
+  final FirebaseAuth firebaseAuth;
   final VoidCallback onSignedIn;
 
   @override
-  State<StatefulWidget> createState() => new _LoginSignUpPageState();
+  State<StatefulWidget> createState() => new _EmailLoginPageState();
 }
 
-enum FormMode { LOGIN, SIGNUP }
+enum FormMode {
+  LOGIN,
+  SIGNUP,
+}
 
-class _LoginSignUpPageState extends State<LoginSignUpPage> {
+class _EmailLoginPageState extends State<EmailLoginPage> {
   final _formKey = new GlobalKey<FormState>();
 
   String _email;
@@ -46,11 +160,16 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
       String userId = "";
       try {
         if (_formMode == FormMode.LOGIN) {
-          userId = await widget.auth.signIn(_email, _password);
+          FirebaseUser user = await widget.firebaseAuth.signInWithEmailAndPassword(
+              email: _email, password: _password);
+          userId = user.uid;
           print('Signed in: $userId');
         } else {
-          userId = await widget.auth.signUp(_email, _password);
-          widget.auth.sendEmailVerification();
+          //
+          FirebaseUser user = await widget.firebaseAuth.createUserWithEmailAndPassword(
+              email: _email, password: _password);
+          userId = user.uid;
+          user.sendEmailVerification();
           _showVerifyEmailSentDialog();
           print('Signed up user: $userId');
         }
@@ -74,7 +193,6 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
       }
     }
   }
-
 
   @override
   void initState() {
@@ -262,102 +380,5 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
             onPressed: _validateAndSubmit,
           ),
         ));
-  }
-}
-
-class LoginScreen extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-    // New private method which includes the background image:
-    BoxDecoration _buildBackground() {
-      return BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/brooke-lark-385507-unsplash.jpg"),
-          fit: BoxFit.cover,
-        ),
-      );
-    }
-
-    Text _buildText() {
-      return Text(
-        'Recipes',
-        style: Theme.of(context).textTheme.headline,
-        textAlign: TextAlign.center,
-      );
-    }
-
-    return Scaffold(
-      // We do not use backgroundColor property anymore.
-      // New Container widget wraps our Center widget:
-      body: Container(
-        decoration: _buildBackground(),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              _buildText(),
-              SizedBox(height: 50.0),
-              SignInButton(
-                text: "Sign in with Email",
-                asset: "assets/mail_icon.png",
-                onPressed: () => FirebaseLoginxx.of(context).signInWithGoogle(),
-              ),
-              SizedBox(height: 30.0),
-              SignInButton(
-                text: "Sign in with Google",
-                asset: "assets/g_logo.png",
-                onPressed: () => FirebaseLoginxx.of(context).signInWithGoogle(),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class SignInButton extends StatelessWidget {
-  final String text;
-  final String asset;
-  final Function onPressed;
-
-  SignInButton({
-    this.text,
-    this.asset,
-    this.onPressed,
-  });
-  
-  @override
-  Widget build(BuildContext context) {
-    return MaterialButton(
-      height: 40.0,
-      onPressed: this.onPressed,
-      color: Colors.white,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Image.asset(
-            asset,
-//            "assets/g_logo.png",
-//            "assets/mail_icon.png",
-            height: 48.0,
-            width: 48.0,
-          ),
-          SizedBox(width: 24.0),
-          Opacity(
-            opacity: 0.54,
-            child: Text(
-              text,
-              style: TextStyle(
-                fontFamily: 'Roboto-Medium',
-                fontSize: 22,
-                color: Colors.black,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }
