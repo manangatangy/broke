@@ -117,7 +117,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
     _isIos = Theme.of(context).platform == TargetPlatform.iOS;
     return new Scaffold(
         appBar: new AppBar(
-          title: new Text('Flutter login demo'),
+          title: new Text('BROKE Debt Recorder'),
         ),
         body: Stack(
           children: <Widget>[
@@ -156,7 +156,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
     );
   }
 
-  Widget _showBody(){
+  Widget _showBody() {
     return new Container(
         padding: EdgeInsets.all(16.0),
         child: new Form(
@@ -195,20 +195,18 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
   Widget _showLogo() {
     return new Hero(
       tag: 'hero',
-      child: Padding(
-        padding: EdgeInsets.fromLTRB(0.0, 70.0, 0.0, 0.0),
-        child: CircleAvatar(
-          backgroundColor: Colors.transparent,
-          radius: 48.0,
-          child: Image.asset('assets/piggy-bank.png'),  // was flutter-icon
-        ),
+      child: Container(
+        height: 200,
+        width: 200,
+        margin: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
+        child: Image.asset('assets/empty-pockets.png'),
       ),
     );
   }
 
   Widget _showEmailInput() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 100.0, 0.0, 0.0),
+      padding: const EdgeInsets.fromLTRB(0.0, 50.0, 0.0, 0.0),
       child: new TextFormField(
         maxLines: 1,
         keyboardType: TextInputType.emailAddress,

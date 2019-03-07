@@ -97,6 +97,8 @@ class SignInModel extends Model {
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
+
+    //TODO catch PlatformException(exception, The given sign-in provider is disabled for this Firebase project. Enable it in the Firebase console, under the sign-in method tab of the Auth section. [ The identity provider configuration is disabled. ], null)
   }
 
   Future<FirebaseUser> signUpWithEmail(String email, String password) async {

@@ -28,11 +28,23 @@ ThemeData buildTheme() {
   // We want to override a default light blue theme.
   final ThemeData base = ThemeData.light();
 
+  AppBarTheme _buildAppBarTheme(AppBarTheme appBarBase) {
+    return appBarBase.copyWith(
+      textTheme: base.primaryTextTheme.copyWith(
+        title: base.primaryTextTheme.title.copyWith(
+          color: Color(0xff223344),
+        )
+      ),
+//      color: const Color(0xFF223333),
+    );
+  }
+
   // And apply changes on it:
   return base.copyWith(
+    appBarTheme: _buildAppBarTheme(base.appBarTheme),
     textTheme: _buildTextTheme(base.textTheme),
     // New code:
-    primaryColor: const Color(0xFFFFF8E1),
+    primaryColor: const Color(0xFFFFF8E1),    // Appbar background
     indicatorColor: const Color(0xFF807A6B),
     scaffoldBackgroundColor: const Color(0xFFF5F5F5),
     accentColor: const Color(0xFFFFF8E1),
