@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class EmailLoginScreen extends StatefulWidget {
-
   @override
   State<StatefulWidget> createState() => new _EmailLoginScreenState();
 }
@@ -11,9 +10,7 @@ class EmailLoginScreen extends StatefulWidget {
 enum FormMode { LOGIN, SIGNUP }
 
 class _EmailLoginScreenState extends State<EmailLoginScreen> {
-  bool fake = true;
   final _formKey = new GlobalKey<FormState>();
-
   SignInModel _signInModel;
 
   String _email;
@@ -26,10 +23,10 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
 
   @override
   void initState() {
+    super.initState();
     _errorMessage = "";
     _isLoading = false;
     _signInModel = SignInModel.of(context);
-    super.initState();
   }
 
   // Check if form is valid before perform login or signup
@@ -50,34 +47,19 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
     });
     if (_validateAndSave()) {
       try {
-        FirebaseUser user;
         if (_formMode == FormMode.SIGNUP) {
-          if (fake) {
-            print('fake signUp');
-          } else {
-            user = await _signInModel.signUpWithEmail(_email, _password);
-            _signInModel.sendEmailVerification(user);
-          }
+          FirebaseUser user = await _signInModel.signUpWithEmailX(_email, _password);
+          _signInModel.sendEmailVerification(user);
           _showVerifyEmailSentDialog();
-          print('Signed up and emailed verification request: $user');
+          print('Signed up and emailed verification request');
         } else {
-          if (fake) {
-            print('fake signIn');
-          } else {
-            user = await _signInModel.signInWithEmail(_email, _password);
-          }
-          print('Signed in: $user');
-          String userId = user?.uid;
-          if (fake) {
-            userId = "fake";
-          }
-          if (userId.length > 0 && userId != null) {
-            // Signal signed-in to model, and navigate to root route
-            _signInModel.haveSignedIn(user);
-
+          bool signedIn = await _signInModel.signInWithEmailX(true, _email, _password);
+          if (signedIn) {
             // From: https://medium.com/flutter-community/flutter-push-pop-push-1bb718b13c31
             // Remove "login" and current/email routes, and replace with "/"
             Navigator.of(context).pushNamedAndRemoveUntil("/", (Route<dynamic> route) => false);
+          } else {
+            // TODO what if failed to sign in ?
           }
         }
         setState(() {
@@ -129,7 +111,8 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
 
   Widget _showCircularProgress(){
     if (_isLoading) {
-      return Center(child: CircularProgressIndicator());
+      print("_showCircularProgress loading");
+      return Center(child: CircularProgressIndicator(backgroundColor: Colors.blueGrey,));
     } return Container(height: 0.0, width: 0.0,);
 
   }

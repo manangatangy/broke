@@ -38,44 +38,33 @@ class SignInModel extends Model {
   /// checks if user is already signed in to google, or can be signed
   /// in (silently), and then signs into using google.  Otherwise just turns
   /// off the loading spinner.
-  Future<AuthStatus> init() async {
-    print("SignInModel.init");
+  Future<bool> checkForSignIn() async {
+    print("SignInModel.checkGoogleSignIn");
     FirebaseUser user = await firebaseAuth.currentUser();
-    print("SignInModel.init:currentUser $user");
-    if (user?.uid != null) {
-      authStatus = AuthStatus.SIGNED_IN;
-      firebaseUser = user;
-      print("SignInModel.init:signed in via email $firebaseUser");
-    } else {
-      GoogleSignInAccount googleAccount = await _getGoogleSignInAccount(googleSignIn);
-      print("SignInModel.init:getGoogleSignInAccount $googleAccount");
-      if (googleAccount != null) {
-        // User is already signed in to google, complete the firebase sign in.
-        FirebaseUser user = await _googleSignIntoFirebase(googleAccount);
-        authStatus = AuthStatus.SIGNED_IN;
-        firebaseUser = user;
-        print("SignInModel.init:signed in via google $firebaseUser");
-      } else {
-        authStatus = AuthStatus.NOT_SIGNED_IN;
-        print("SignInModel.init:not signed in");
-      }
+    if (checkUserAndSetStatus("checkForSignIn.firebaseAuth.currentUser", user)) {
+      return true;
     }
-    notifyListeners();
-    return authStatus;
+    GoogleSignInAccount googleAccount = await _getGoogleSignInAccount(googleSignIn);
+    if (googleAccount == null) {
+      return checkUserAndSetStatus("checkForSignIn.no-existing-sign-in", null);
+    }
+    // User is already signed in to google, complete the firebase sign in.
+    return await signInWithGoogle(googleAccount);
   }
 
-  /// Starts the interactive sign-in to google (unless already signed in)
+  /// Starts the interactive sign-in to google (unless already signed in to
+  /// google, indicate by non-null parameter)
   /// and then signs in to firebase, using the google account.
-  Future<FirebaseUser> signInWithGoogle() async {
-    GoogleSignInAccount googleAccount = await googleSignIn.signIn();
-    if (googleAccount != null) {
-      FirebaseUser user = await _googleSignIntoFirebase(googleAccount);
-      authStatus = AuthStatus.SIGNED_IN;
-      firebaseUser = user;
-      print("SignInModel.signInWithGoogle:signed in via google $firebaseUser");
-      notifyListeners();
+  Future<bool> signInWithGoogle(GoogleSignInAccount googleAccount) async {
+    if (googleAccount == null) {
+      // This bit is interactive.
+      googleAccount = await googleSignIn.signIn();
     }
-    return firebaseUser;
+    FirebaseUser user;
+    if (googleAccount != null) {
+      user = await _googleSignIntoFirebase(googleAccount);
+    }
+    return checkUserAndSetStatus("signInWithGoogle", user);
   }
 
   /// If there is a currently signed in account, return it.
@@ -84,9 +73,11 @@ class SignInModel extends Model {
   Future<GoogleSignInAccount> _getGoogleSignInAccount(GoogleSignIn googleSignIn) async {
     // Is the user already signed in?
     GoogleSignInAccount account = googleSignIn.currentUser;
+    print("SignInModel.googleSignIn.currentUser => $account");
     // Try to sign in the previous user:
     if (account == null) {
       account = await googleSignIn.signInSilently();
+      print("SignInModel.signInSilently => $account");
     }
     return account;
   }
@@ -101,26 +92,70 @@ class SignInModel extends Model {
     //TODO catch PlatformException(exception, The given sign-in provider is disabled for this Firebase project. Enable it in the Firebase console, under the sign-in method tab of the Auth section. [ The identity provider configuration is disabled. ], null)
   }
 
+  Future<bool> checkForSignInX(bool signedIn) async {
+    return Future<bool>.delayed(Duration(seconds: 5), () {
+      print("SignInModel.checkForSignInX signedIn => $signedIn");
+      authStatus = signedIn ? AuthStatus.SIGNED_IN : AuthStatus.NOT_SIGNED_IN;
+      return signedIn;
+    });
+  }
+  Future<bool> signInWithGoogleX(bool signedIn, GoogleSignInAccount _) async {
+    return Future<bool>.delayed(Duration(seconds: 5), () {
+      print("SignInModel.signInWithGoogleX signedIn => $signedIn");
+      authStatus = signedIn ? AuthStatus.SIGNED_IN : AuthStatus.NOT_SIGNED_IN;
+      return signedIn;
+    });
+  }
+
+  //---------------------------------------------------------------------------------------
+
   Future<FirebaseUser> signUpWithEmail(String email, String password) async {
     return await firebaseAuth.createUserWithEmailAndPassword(
         email: email, password: password);
   }
 
   String sendEmailVerification(FirebaseUser user) {
-    user.sendEmailVerification();
+    if (user != null) {
+      user.sendEmailVerification();
+    }
     return user?.uid;   // Convenience.
   }
 
-  Future<FirebaseUser> signInWithEmail(String email, String password) async {
-    return await firebaseAuth.signInWithEmailAndPassword(
+  Future<bool> signInWithEmail(String email, String password) async {
+    FirebaseUser user =  await firebaseAuth.signInWithEmailAndPassword(
         email: email, password: password);
+    return checkUserAndSetStatus("signInWithEmail", user);
   }
 
-  void haveSignedIn(FirebaseUser user) {
-    authStatus = AuthStatus.SIGNED_IN;
-    firebaseUser = user;
-    print("SignInModel.signedIn $firebaseUser");
-//    notifyListeners();
+  Future<FirebaseUser> signUpWithEmailX(String email, String password) async {
+    return Future<FirebaseUser>.delayed(Duration(seconds: 5), () {
+      return null;
+    });
   }
 
+  Future<bool> signInWithEmailX(bool signedIn, String email, String password) async {
+    return Future<bool>.delayed(Duration(seconds: 5), () {
+      print("SignInModel.signInWithEmailX signedIn => $signedIn");
+      authStatus = signedIn ? AuthStatus.SIGNED_IN : AuthStatus.NOT_SIGNED_IN;
+      return signedIn;
+    });
+  }
+
+  //---------------------------------------------------------------------------------------
+
+  /// Check the user and if ok, store it and set SIGNED_IN,
+  /// else set NOT_SIGNED_IN.  Return true if signed in.
+  bool checkUserAndSetStatus(String label, FirebaseUser user) {
+    String userId = user?.uid;
+    if (userId.length > 0 && userId != null) {
+      firebaseUser = user;
+      authStatus = AuthStatus.SIGNED_IN;
+    } else {
+      firebaseUser = null;
+      authStatus = AuthStatus.NOT_SIGNED_IN;
+    }
+    print('SignInModel.$label user => $user, status => $authStatus}');
+    return (authStatus == AuthStatus.SIGNED_IN);
+
+  }
 }

@@ -5,38 +5,49 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 /// This is the entry login screen with buttons for login by email and google.
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+
+  SignInModel model;
+
+  @override
+  void initState() {
+    super.initState();
+    model = SignInModel.of(context);
+  }
+
+  void _onSignIn(bool isSignedIn) {
+    print("LoginScreenState isSignedIn => $isSignedIn");
+    if (isSignedIn) {
+      // This removes the current route (without rebuilding it).
+      // TODO maybe move this code to the model, called automatically
+      Navigator.of(context).pushNamedAndRemoveUntil("/", (Route<dynamic> route) => false);
+    } else {
+      setState(() {}); // Rebuild with new model.authStatus
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
 
-    BoxDecoration _buildBackground() {
-      return BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/brooke-lark-385507-unsplash.jpg"),
-          fit: BoxFit.cover,
-        ),
-      );
-    }
+    AuthStatus authStatus = model.authStatus;
+    print("LoginScreenState.build: $authStatus");
 
-    Text _buildText() {
-      return Text(
-        'Recipes',
-        style: Theme.of(context).textTheme.headline,
-        textAlign: TextAlign.center,
-      );
+    if (authStatus == AuthStatus.INIT) {
+      model.checkForSignInX(false).then(_onSignIn);
     }
 
     return Scaffold(
       body: Container(
         decoration: _buildBackground(),
-        child: ScopedModelDescendant<SignInModel>(
-          builder: (context, child, model) {
-            print("PageLogin.build: ${model.authStatus}");
-            switch (model.authStatus) {
+        child: Builder(
+          builder: (context) {
+            switch (authStatus) {
               case AuthStatus.INIT:
-                model.init();
-                // TODO translucent spinner over the background
                 return Center(
                   child: CircularProgressIndicator(),
                 );
@@ -46,7 +57,7 @@ class LoginScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      _buildText(),
+                      _buildText(context),
                       SizedBox(height: 50.0),
                       SignInButton(
                         text: "Sign in with Email",
@@ -57,7 +68,9 @@ class LoginScreen extends StatelessWidget {
                       SignInButton(
                         text: "Sign in with Google",
                         asset: "assets/g_logo.png",
-                        onPressed: () => model.signInWithGoogle(),
+                        onPressed: () {
+                          model.signInWithGoogleX(false, null).then(_onSignIn);
+                        },
                         // The above call may cause state change -> signed-in, in which
                         // case this widget will be rebuilt with the new state, causing
                         // the route to change.
@@ -67,14 +80,29 @@ class LoginScreen extends StatelessWidget {
                 );
                 break;
               case AuthStatus.SIGNED_IN:
-                // Change route to the home page.
-                Navigator.pushReplacementNamed(context, "/");
                 return Container();
                 break;
             }
           },
         ),
       ),
+    );
+  }
+
+  BoxDecoration _buildBackground() {
+    return BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage("assets/brooke-lark-385507-unsplash.jpg"),
+        fit: BoxFit.cover,
+      ),
+    );
+  }
+
+  Text _buildText(BuildContext context) {
+    return Text(
+      'BROKE',
+      style: Theme.of(context).textTheme.headline,
+      textAlign: TextAlign.center,
     );
   }
 }
