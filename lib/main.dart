@@ -1,5 +1,6 @@
 import 'package:broke/interim2.dart';
 import 'package:broke/models/sign_in_model.dart';
+import 'package:broke/widgets/email_login.dart';
 import 'package:broke/widgets/login.dart';
 import 'package:broke/widgets/theme.dart';
 import 'package:flutter/material.dart';
@@ -35,11 +36,9 @@ class MyApp extends StatelessWidget {
           theme: buildTheme(),
           initialRoute: "login",
           routes: {
-            // If you're using navigation routes, Flutter needs a base route.
-            // We're going to change this route once we're ready with
-            // implementation of HomeScreen.
             '/': (context) => Page1(),
-            'login': (context) =>LoginScreen(),
+            'login': (context) => LoginScreen(),
+            'email': (context) => EmailLoginScreen(),
           },
         )
     );

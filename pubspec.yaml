@@ -49,6 +49,7 @@ flutter:
     - assets/brooke-lark-385507-unsplash.jpg
     - assets/g_logo.png
     - assets/mail_icon.png
+    - assets/piggy-bank.png
 
   fonts:
     - family: Merriweather
