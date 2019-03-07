@@ -52,16 +52,21 @@ class LoginScreen extends StatelessWidget {
                         text: "Sign in with Email",
                         asset: "assets/mail_icon.png",
                         onPressed: () async {
+                          // TODO test if a bool can be popped and what value it is when back clicked
                           FirebaseUser user = await Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => EmailLoginScreen(signInModel: model,)),
                           );
-                          print("PageLogin emailLoginScreen returned: $user and status: ${model.authStatus}");
-                          if (model.authStatus == AuthStatus.SIGNED_IN) {
-                            // Email page has signed in so change route to the home page.
-                            print("PageLogin has signed-in, pushing /");
-                            Navigator.pushReplacementNamed(context, "/");
-                          }
+//                          print("PageLogin emailLoginScreen returned: $user and status: ${model.authStatus}");
+//
+//                          // From: https://medium.com/flutter-community/flutter-push-pop-push-1bb718b13c31
+//                          Navigator.of(context).pushNamedAndRemoveUntil("/", (Route<dynamic> route) => false);
+//                          if (model.authStatus == AuthStatus.SIGNED_IN) {
+//                            // Email page has signed in so change route to the home page.
+//                            print("PageLogin has signed-in, popping /");
+//                            // TODO test if pop causes a exc like the psuhReplacement does
+//                            Navigator.pop(context);
+//                          }
                         },
                       ),
                       SizedBox(height: 30.0),

@@ -72,7 +72,17 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
           if (userId.length > 0 && userId != null) {
             // Signal signed in to model, and return back from this widget to previous
             widget.signInModel.haveSignedIn(user);
-            Navigator.pop(context, user);
+
+//            Navigator.pop(context, user);
+            // This skips the login screen
+//            Navigator.pushReplacementNamed(context, "/");
+
+            print("EmailLoginScreen navigating: $user");
+
+            // From: https://medium.com/flutter-community/flutter-push-pop-push-1bb718b13c31
+            // Remove "login" and current/email routes, and replace with "/"
+            Navigator.of(context).pushNamedAndRemoveUntil("/", (Route<dynamic> route) => false);
+
           }
         }
         setState(() {

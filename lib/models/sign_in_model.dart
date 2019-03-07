@@ -3,8 +3,23 @@ import 'package:flutter/widgets.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:scoped_model/scoped_model.dart';
 
+/// state               transition
+/// home:INIT           push(login)
+/// login:INIT          init-user -> SIGNED_IN/NOT_SIGNED_IN
+/// login:SIGNED_IN     pop(back to home, SIGNED_IN)
+/// home:SIGNED_IN      show-home-screen
+///
+/// login:NOT_SIGNED_IN show-sign-in-options
+/// login:click-back    pop(back to home, NOT_SIGNED_IN)
+/// home:NOT_SIGNED_IN  pop(exit?)
+///
+/// login:click-email   push(email)
+/// email:signed-in-ok  -> SIGNED_IN, pop(back to login)
+/// login:signed-in-ok  pop(back to home)
+/// email:click-back    pop(back to login)
+///
 enum AuthStatus {
-  INIT,
+  INIT,     // Signals; home:push(login), login:start-init
 //  UNKNOWN,
   NOT_SIGNED_IN,
   SIGNED_IN,

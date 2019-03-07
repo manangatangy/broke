@@ -11,6 +11,7 @@ import 'package:scoped_model/scoped_model.dart';
 class Page1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    print('Page1,build ${SignInModel.of(context).authStatus}');
     return Scaffold(
       appBar: AppBar(
         title: Text("page 1 Route"),
