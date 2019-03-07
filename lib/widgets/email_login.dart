@@ -70,11 +70,9 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
             userId = "fake";
           }
           if (userId.length > 0 && userId != null) {
-            // Return back from this widget to previous,
-            // and signal signed in status change -> signed-in
-            Navigator.pop(context);
+            // Signal signed in to model, and return back from this widget to previous
             widget.signInModel.haveSignedIn(user);
-            return;   // Bypass the setState.
+            Navigator.pop(context, user);
           }
         }
         setState(() {

@@ -1,5 +1,6 @@
 import 'package:broke/models/sign_in_model.dart';
 import 'package:broke/widgets/email_login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -50,13 +51,17 @@ class LoginScreen extends StatelessWidget {
                       SignInButton(
                         text: "Sign in with Email",
                         asset: "assets/mail_icon.png",
-                        onPressed: () {
-                          Navigator.push(
+                        onPressed: () async {
+                          FirebaseUser user = await Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => EmailLoginScreen(
-                              signInModel: model,
-                            )),
+                            MaterialPageRoute(builder: (context) => EmailLoginScreen(signInModel: model,)),
                           );
+                          print("PageLogin emailLoginScreen returned: $user and status: ${model.authStatus}");
+                          if (model.authStatus == AuthStatus.SIGNED_IN) {
+                            // Email page has signed in so change route to the home page.
+                            print("PageLogin has signed-in, pushing /");
+                            Navigator.pushReplacementNamed(context, "/");
+                          }
                         },
                       ),
                       SizedBox(height: 30.0),
@@ -73,7 +78,7 @@ class LoginScreen extends StatelessWidget {
                 );
                 break;
               case AuthStatus.SIGNED_IN:
-              // Change route to the home page.
+                // Change route to the home page.
                 Navigator.pushReplacementNamed(context, "/");
                 return Container();
                 break;

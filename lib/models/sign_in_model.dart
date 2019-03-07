@@ -103,7 +103,7 @@ class SignInModel extends Model {
     authStatus = AuthStatus.SIGNED_IN;
     firebaseUser = user;
     print("SignInModel.signedIn $firebaseUser");
-    notifyListeners();
+//    notifyListeners();
   }
 
 }
