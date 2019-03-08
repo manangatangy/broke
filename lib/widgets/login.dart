@@ -1,4 +1,4 @@
-import 'package:broke/models/sign_in_model.dart';
+import 'package:broke/models/sign_in.dart';
 import 'package:broke/widgets/email_login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

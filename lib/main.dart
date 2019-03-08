@@ -1,42 +1,26 @@
-import 'package:broke/interim2.dart';
-import 'package:broke/models/sign_in_model.dart';
+import 'package:broke/models/sign_in.dart';
 import 'package:broke/widgets/email_login.dart';
+import 'package:broke/widgets/home.dart';
 import 'package:broke/widgets/login.dart';
 import 'package:broke/widgets/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-// - StateWidget incl. state data
-//    - RecipesApp
-//        - All other widgets which are able to access the data
 void main() => runApp(MyApp());
-//    runApp(
-//      FirebaseLogin(
-//        child: MaterialApp(
-//          debugShowCheckedModeBanner: false,
-//          title: 'Recipes',
-//          theme: buildTheme(),
-//          home: FirebaseLogin(
-//            child: HomeScreen(),
-//          ),
-//        ),
-//      ),
-//    );
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // First, create a `ScopedModel` widget. This will provide
-    // the `model` to the children that request it.
     return ScopedModel<SignInModel>(
         model: SignInModel(),
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Recipes',
           theme: buildTheme(),
-          initialRoute: "login",
+//          initialRoute: "login",
+          initialRoute: "/",    // Temporarily mark this as initialRoute to skip the login protocol.
           routes: {
-            '/': (context) => Page1(),
+            '/': (context) => HomeScreen(),
             'login': (context) => LoginScreen(),
             'email': (context) => EmailLoginScreen(),
           },
@@ -44,9 +28,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// Photo by Brooke Lark on Unsplash
-
 
 // 1. https://medium.com/@michael.krol/simple-recipes-app-made-in-flutter-introduction-c80964167a19
 // 2. https://medium.com/flutter-community/simple-recipes-app-made-in-flutter-detail-view-and-settings-widget-9a7ca9ebec93

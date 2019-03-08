@@ -1,4 +1,4 @@
-import 'package:broke/model/recipe.dart';
+import 'package:broke/models/recipe.dart';
 
 List<Recipe> getRecipes() {
   return [

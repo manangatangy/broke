@@ -1,12 +1,9 @@
-import 'dart:async';
 
-import 'package:broke/models/app_model.dart';
+import 'package:broke/models/recipe.dart';
+import 'package:broke/models/sign_in.dart';
+import 'package:broke/models/store.dart';
+import 'package:broke/widgets/recipe_card.dart';
 import 'package:flutter/material.dart';
-
-import 'package:broke/model/recipe.dart';
-import 'package:broke/utils/store.dart';
-import 'package:broke/ui/widgets/recipe_card.dart';
-import 'package:broke/widgets/login.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -14,13 +11,30 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-//  AppModel appModel;
+  bool isBusy;
   List<Recipe> recipes = getRecipes();
   List<String> userFavorites = getFavoritesIDs();
 
+  @override
+  void initState() {
+    super.initState();
+    isBusy = false;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        _buildTabView(
+          body: _buildTabsContent(),
+        ),
+        _busyIndicator(),
+      ],
+    );
+  }
+
   DefaultTabController _buildTabView({Widget body}) {
     const double _iconSize = 20.0;
-
     return DefaultTabController(
       length: 4,
       child: Scaffold(
@@ -48,26 +62,6 @@ class HomeScreenState extends State<HomeScreen> {
     );
   }
 
-//  Widget _buildContent() {
-//    if (appModel.isLoading) {
-//      return _buildTabView(
-//        body: _buildLoadingIndicator(),
-//      );
-//    } else if (!appModel.isLoading && appModel.user == null) {
-//      return new LoginScreen();
-//    } else {
-//      return _buildTabView(
-//        body: _buildTabsContent(),
-//      );
-//    }
-//  }
-
-  Center _buildLoadingIndicator() {
-    return Center(
-      child: new CircularProgressIndicator(),
-    );
-  }
-
   TabBarView _buildTabsContent() {
     Padding _buildRecipes(List<Recipe> recipesList) {
       return Padding(
@@ -91,7 +85,22 @@ class HomeScreenState extends State<HomeScreen> {
         ),
       );
     }
-
+    Widget _buildSettings() {
+      return Column(
+        children: <Widget>[
+          Center(child: Icon(Icons.settings),),
+          RaisedButton(
+            onPressed: () async {
+              setState(() { isBusy = true; });
+              await SignInModel.of(context).signOut();
+              setState(() { isBusy = false; });
+              Navigator.of(context).pushNamedAndRemoveUntil("login", (Route<dynamic> route) => false);
+            },
+            child: Text('Sign out'),
+          ),
+        ],
+      );
+    }
     return TabBarView(
       children: [
         _buildRecipes(
@@ -102,7 +111,7 @@ class HomeScreenState extends State<HomeScreen> {
         _buildRecipes(recipes
             .where((recipe) => userFavorites.contains(recipe.id))
             .toList()),
-        Center(child: Icon(Icons.settings)),
+        _buildSettings(),
       ],
     );
   }
@@ -119,10 +128,26 @@ class HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return _buildTabView(
-      body: _buildTabsContent(),
+  Widget _busyIndicator() {
+    if (!isBusy) {
+      return Container();
+    }
+    return Stack(
+      children: [
+        Opacity(
+          opacity: 0.7,
+          child: const ModalBarrier(dismissible: false, color: Colors.grey),
+        ),
+        Center(
+          child: Container(
+            width: 100.0,
+            height: 100.0,
+            child: CircularProgressIndicator(
+              strokeWidth: 10,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

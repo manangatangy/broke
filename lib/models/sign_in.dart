@@ -3,32 +3,28 @@ import 'package:flutter/widgets.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-/// state               transition
-/// home:INIT           push(login)
-/// login:INIT          init-user -> SIGNED_IN/NOT_SIGNED_IN
-/// login:SIGNED_IN     pop(back to home, SIGNED_IN)
-/// home:SIGNED_IN      show-home-screen
-///
-/// login:NOT_SIGNED_IN show-sign-in-options
-/// login:click-back    pop(back to home, NOT_SIGNED_IN)
-/// home:NOT_SIGNED_IN  pop(exit?)
-///
-/// login:click-email   push(email)
-/// email:signed-in-ok  -> SIGNED_IN, pop(back to login)
-/// login:signed-in-ok  pop(back to home)
-/// email:click-back    pop(back to login)
-///
 enum AuthStatus {
-  INIT,     // Signals; home:push(login), login:start-init
-//  UNKNOWN,
+  INIT,
   NOT_SIGNED_IN,
   SIGNED_IN,
 }
 
-/// 
-/// There are two protocols for the sign-in.
-/// The first consists of three methods;
-/// 1. check for existing sign in and 
+/// A protocol for signing into firebase.
+/// currently supports the google and email providers, and some common functions.
+/// The sign in state is held in AuthStatus and the FirebaseUser.
+/// Common:
+/// isSignedIn => checks if previous signed in session is available, and updates authStatus/firebaseUser
+/// signOut => signs out, updates authStatus/firebaseUser
+/// Google:
+/// First call signInWithGoogleSilently() and if it returns false, then initiate the interactive
+/// process; signInWithGoogleInteractively() which may also return false if sign in didnt succeed.
+/// Both the functions update authStatus/firebaseUser appropriately.
+/// Email:
+/// User may create new account using signUpWithEmail() and then sendEmailVerification(), after which
+/// the user should complete the verification via the emailed link. The convenience function
+/// resetEmailPassword() is also available to allow user the change password if it's forgotten.
+/// These functions don't change authStatus/firebaseUser.
+/// Use signInWithEmail() to sign in and return success/fail (also updating authStatus/firebaseUser).
 class SignInModel extends Model {
 
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
@@ -58,10 +54,6 @@ class SignInModel extends Model {
 //      authStatus = AuthStatus.NOT_SIGNED_IN;
 //    });
 //  }
-
-  /// If there is a currently signed in account, return it.
-  /// Else try to sign in (without interaction) to the previous signed
-  /// in user and return that account.
 
   //----------------------------- google-sign-in ----------------------------------------------------------
 
@@ -96,8 +88,8 @@ class SignInModel extends Model {
       return _checkUserAndSetStatus("no-google-account", null);
     }
     GoogleSignInAuthentication googleAuth = await account.authentication;
-    // The above throws PlatformException(failed_to_recover_auth, Failed attempt to recover authentication, null)
-    // if user abandons the account sign in attempt.
+    // The above throws PlatformException(failed_to_recover_auth, Failed attempt to recover
+    // authentication, null) if user abandons account sign in attempt.  Should be caught by caller.
     user = await firebaseAuth.signInWithGoogle(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
