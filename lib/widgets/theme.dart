@@ -47,7 +47,7 @@ ThemeData buildTheme() {
     primaryColor: const Color(0xFFFFF8E1),    // Appbar background
     indicatorColor: const Color(0xFF807A6B),
     scaffoldBackgroundColor: const Color(0xFFF5F5F5),
-    accentColor: const Color(0xFFFFF8E1),
+    accentColor: const Color(0xFFFFF8E1),     // CircularProgressIndicator color
     iconTheme: IconThemeData(
       color: const Color(0xFFCCC5AF),
       size: 20.0,

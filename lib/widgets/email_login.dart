@@ -29,6 +29,21 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
     _signInModel = SignInModel.of(context);
   }
 
+  @override
+  Widget build(BuildContext context) {
+    _isIos = Theme.of(context).platform == TargetPlatform.iOS;
+    return new Scaffold(
+        appBar: new AppBar(
+          title: new Text('BROKE Debt Recorder'),
+        ),
+        body: Stack(
+          children: <Widget>[
+            _showBody(),
+            _showCircularProgress(),
+          ],
+        ));
+  }
+
   // Check if form is valid before perform login or signup
   bool _validateAndSave() {
     final form = _formKey.currentState;
@@ -48,19 +63,20 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
     if (_validateAndSave()) {
       try {
         if (_formMode == FormMode.SIGNUP) {
-          FirebaseUser user = await _signInModel.signUpWithEmailX(_email, _password);
+          FirebaseUser user = await _signInModel.signUpWithEmail(_email, _password);
           _signInModel.sendEmailVerification(user);
           _showVerifyEmailSentDialog();
           print('Signed up and emailed verification request');
         } else {
-          bool signedIn = await _signInModel.signInWithEmailX(true, _email, _password);
+          bool signedIn = await _signInModel.signInWithEmail(_email, _password);
           if (signedIn) {
             // From: https://medium.com/flutter-community/flutter-push-pop-push-1bb718b13c31
             // Remove "login" and current/email routes, and replace with "/"
             Navigator.of(context).pushNamedAndRemoveUntil("/", (Route<dynamic> route) => false);
           } else {
-            // TODO what if failed to sign in ?
+            _showSignInFailedDialog();
           }
+          // TODO what if failed to sign in ?
         }
         setState(() {
           _isLoading = false;
@@ -94,21 +110,6 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    _isIos = Theme.of(context).platform == TargetPlatform.iOS;
-    return new Scaffold(
-        appBar: new AppBar(
-          title: new Text('BROKE Debt Recorder'),
-        ),
-        body: Stack(
-          children: <Widget>[
-            _showBody(),
-            _showCircularProgress(),
-          ],
-        ));
-  }
-
   Widget _showCircularProgress(){
     if (_isLoading) {
       print("_showCircularProgress loading");
@@ -130,6 +131,27 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
               child: new Text("Dismiss"),
               onPressed: () {
                 _changeFormToLogin();
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showSignInFailedDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Email sign in"),
+          content: new Text("Error occurred during sign in"),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("Dismiss"),
+              onPressed: () {
                 Navigator.of(context).pop();
               },
             ),

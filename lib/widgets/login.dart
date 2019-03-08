@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
     print("LoginScreenState.build: $authStatus");
 
     if (authStatus == AuthStatus.INIT) {
-      model.checkForSignInX(false).then(_onSignIn);
+      model.checkForSignIn().then(_onSignIn);
     }
 
     return Scaffold(
@@ -69,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         text: "Sign in with Google",
                         asset: "assets/g_logo.png",
                         onPressed: () {
-                          model.signInWithGoogleX(false, null).then(_onSignIn);
+                          model.signInWithGoogle(null).then(_onSignIn);
                         },
                         // The above call may cause state change -> signed-in, in which
                         // case this widget will be rebuilt with the new state, causing

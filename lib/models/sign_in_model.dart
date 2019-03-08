@@ -40,15 +40,19 @@ class SignInModel extends Model {
   /// off the loading spinner.
   Future<bool> checkForSignIn() async {
     print("SignInModel.checkGoogleSignIn");
+    // This function returns a user if currently signed in (which may be from
+    // a previous session).
     FirebaseUser user = await firebaseAuth.currentUser();
     if (checkUserAndSetStatus("checkForSignIn.firebaseAuth.currentUser", user)) {
       return true;
     }
+    // This method looks for a google account on the device and returns it
+    // perhaps also silently signing into it, if not already.
     GoogleSignInAccount googleAccount = await _getGoogleSignInAccount(googleSignIn);
     if (googleAccount == null) {
       return checkUserAndSetStatus("checkForSignIn.no-existing-sign-in", null);
     }
-    // User is already signed in to google, complete the firebase sign in.
+    // At his point the google account is used to sign into firebase.
     return await signInWithGoogle(googleAccount);
   }
 
@@ -143,11 +147,24 @@ class SignInModel extends Model {
 
   //---------------------------------------------------------------------------------------
 
+  Future<void> signOut() async {
+    await firebaseAuth.signOut();
+    firebaseUser = null;
+    authStatus = AuthStatus.NOT_SIGNED_IN;
+  }
+
+  Future<void> signOutX() {
+    return Future<void>.delayed(Duration(seconds: 5), () {
+      firebaseUser = null;
+      authStatus = AuthStatus.NOT_SIGNED_IN;
+    });
+  }
+
   /// Check the user and if ok, store it and set SIGNED_IN,
   /// else set NOT_SIGNED_IN.  Return true if signed in.
   bool checkUserAndSetStatus(String label, FirebaseUser user) {
     String userId = user?.uid;
-    if (userId.length > 0 && userId != null) {
+    if (userId != null && userId.length > 0) {
       firebaseUser = user;
       authStatus = AuthStatus.SIGNED_IN;
     } else {
