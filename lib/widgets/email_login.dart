@@ -1,4 +1,5 @@
 import 'package:broke/models/sign_in_model.dart';
+import 'package:broke/widgets/theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -43,7 +44,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
         body: Stack(
           children: <Widget>[
             _showBody(),
-            _showCircularProgress(),
+            progressIndicator(),
           ],
         ));
   }
@@ -70,7 +71,11 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
         if (_formMode == FormMode.SIGNUP) {
           FirebaseUser user = await _signInModel.signUpWithEmail(_email, _password);
           _signInModel.sendEmailVerification(user);
-          _showVerifyEmailSentDialog("Verify your account");
+          showDismissableDialog(
+            'Verify your account',
+            'Link to verify account has been sent to your email',
+          );
+
           print('Signed up and emailed verification request');
         } else {
           bool signedIn = await _signInModel.signInWithEmail(_email, _password);
@@ -116,7 +121,10 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
     if (_validateAndSave()) {
       try {
         await _signInModel.resetEmailPassword(_email);
-        _showVerifyEmailSentDialog("Password reset email sent");
+        showDismissableDialog(
+          'Reset your Password',
+          'Link to reset account password has been sent to your email',
+        );
         setState(() {
           _isLoading = false;
         });
@@ -133,7 +141,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
     }
   }
 
-  Widget _showCircularProgress(){
+  Widget progressIndicator(){
     if (_isLoading) {
       print("_showCircularProgress loading");
       return Center(child: CircularProgressIndicator(backgroundColor: Colors.blueGrey,));
@@ -141,7 +149,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
 
   }
 
-  void _showVerifyEmailSentDialog(String label) {
+  void _showVerifyEmxailSentDialog(String label) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -149,6 +157,28 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
         return AlertDialog(
           title: new Text(label),
           content: new Text("Link to verify account has been sent to your email"),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("Dismiss"),
+              onPressed: () {
+                _changeFromMode(FormMode.LOGIN);
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void showDismissableDialog(String title, String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text(title),
+          content: new Text(message),
           actions: <Widget>[
             new FlatButton(
               child: new Text("Dismiss"),
@@ -201,43 +231,33 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                   child: Image.asset('assets/empty-pockets.png'),
                 ),
               ),
-              _showEmailInput(),
-              _showPasswordInput(),
+              emailInputField(),
+              passwordInputField(),
               Padding(
                 padding: EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
                 child: SizedBox(
-                  height: 40.0,
-                  child: new RaisedButton(
-                    textTheme: ButtonTextTheme.normal,
-                    elevation: 5.0,
-                    shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                    color: Colors.blue,
-                    child: Text(isLogin ? 'Login' : 'Create account',
-                      style: TextStyle(fontSize: 20.0, color: Colors.white),
-                    ),
+                  height: 40,
+                  child: appRaisedButton(
                     onPressed: _validateAndSubmit,
+                    data: isLogin ? 'Login' : 'Create account',
                   ),
                 ),
               ),
-              FlatButton(
-                child: Text(isLogin ? 'Create an account' : 'Have an account? Sign in',
-                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),
-                ),
+              appFlatButton(
                 onPressed: () => _changeFromMode(isLogin ? FormMode.SIGNUP : FormMode.LOGIN),
+                data: isLogin ? 'Create an account' : 'Have an account? Sign in',
               ),
-              FlatButton(
-                child: Text('Forgotten password?',
-                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),
-                ),
+              appFlatButton(
                 onPressed: _forgottenPassword,
+                data: 'Forgotten password?',
               ),
-              _showErrorMessage(),
+              errorMessageText(),
             ],
           ),
         ));
   }
 
-  Widget _showErrorMessage() {
+  Widget errorMessageText() {
     if (_errorMessage.length > 0 && _errorMessage != null) {
       return new Text(
         _errorMessage,
@@ -254,7 +274,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
     }
   }
 
-  Widget _showEmailInput() {
+  Widget emailInputField() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
       child: new TextFormField(
@@ -274,7 +294,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
     );
   }
 
-  Widget _showPasswordInput() {
+  Widget passwordInputField() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
       child: new TextFormField(

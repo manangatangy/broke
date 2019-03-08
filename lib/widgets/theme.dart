@@ -1,5 +1,46 @@
 import 'package:flutter/material.dart';
 
+//TextStyle(
+//color: Colors.black87,
+//fontSize: 18.0,
+//fontWeight: FontWeight.w400,
+//);
+
+const TextStyle TextStyleFlatButton = const TextStyle(
+  color: Colors.black87,
+  fontSize: 18.0,
+  fontWeight: FontWeight.w400,
+);
+
+const TextStyle TextStyleRaisedButton = const TextStyle(
+//  color: Colors.black87,
+  fontSize: 20.0,
+//  fontWeight: FontWeight.w400,
+);
+
+FlatButton appFlatButton({String data, @required VoidCallback onPressed}) {
+  return FlatButton(
+    onPressed: onPressed,
+    child: Text(data,
+      style: TextStyleFlatButton,
+    ),
+  );
+}
+
+RaisedButton appRaisedButton({
+  String data,
+  @required VoidCallback onPressed,
+}) {
+  return RaisedButton(
+    elevation: 5.0,
+    onPressed: onPressed,
+    child: Text(data,
+      style: TextStyleRaisedButton,
+    ),
+    // shape and color are set via MaterialApp.theme.themeData
+  );
+}
+
 class ButtonFlat extends StatelessWidget {
   final Widget child;
 
@@ -84,14 +125,15 @@ ThemeData buildTheme() {
       size: 20.0,
     ),
     buttonColor: Colors.white,
-//    buttonTheme: ButtonThemeData(
-////      buttonColor: Colors.blue,
-//      textTheme: ButtonTextTheme.accent,
-////      elevation: 5.0,
-//      shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-////      color: Colors.blue,
-//
-//    ),
+
+    buttonTheme: ButtonThemeData(
+      buttonColor: Colors.blue,   // Body color for raisedButton
+      textTheme: ButtonTextTheme.primary,
+//      elevation: 5.0,
+      shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(10.0)),
+//      color: Colors.blue,
+
+    ),
   );
 }
 
