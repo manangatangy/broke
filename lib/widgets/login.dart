@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
     print("LoginScreenState.build: $authStatus");
 
     if (authStatus == AuthStatus.INIT) {
-      model.checkForSignIn().then(_onSignIn);
+      model.isSignedIn().then(_onSignIn);
     }
 
     return Scaffold(
@@ -68,12 +68,18 @@ class _LoginScreenState extends State<LoginScreen> {
                       SignInButton(
                         text: "Sign in with Google",
                         asset: "assets/g_logo.png",
-                        onPressed: () {
-                          model.signInWithGoogle(null).then(_onSignIn);
+                        onPressed: () async {
+                          try {
+                            // The following calls will exception is user abandons sign in.
+                            bool isSignedIn = await model.signInWithGoogleSilently();
+                            if (!isSignedIn) {
+                              isSignedIn = await model.signInWithGoogleInteractively();
+                            }
+                            _onSignIn(isSignedIn);
+                          } catch (e) {
+                            print("error : $e");
+                          }
                         },
-                        // The above call may cause state change -> signed-in, in which
-                        // case this widget will be rebuilt with the new state, causing
-                        // the route to change.
                       ),
                     ],
                   ),

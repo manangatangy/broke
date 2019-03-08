@@ -18,14 +18,18 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
   String _errorMessage;
 
   FormMode _formMode = FormMode.LOGIN;
+  bool _validatePassword;
   bool _isIos;
   bool _isLoading;
+
+  bool get isLogin => (_formMode == FormMode.LOGIN);
 
   @override
   void initState() {
     super.initState();
     _errorMessage = "";
     _isLoading = false;
+    _validatePassword = true;
     _signInModel = SignInModel.of(context);
   }
 
@@ -59,13 +63,14 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
     setState(() {
       _errorMessage = "";
       _isLoading = true;
+      _validatePassword = true;
     });
     if (_validateAndSave()) {
       try {
         if (_formMode == FormMode.SIGNUP) {
           FirebaseUser user = await _signInModel.signUpWithEmail(_email, _password);
           _signInModel.sendEmailVerification(user);
-          _showVerifyEmailSentDialog();
+          _showVerifyEmailSentDialog("Verify your account");
           print('Signed up and emailed verification request');
         } else {
           bool signedIn = await _signInModel.signInWithEmail(_email, _password);
@@ -78,6 +83,40 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
           }
           // TODO what if failed to sign in ?
         }
+      } catch (e) {
+        print('Error: $e');
+        setState(() {
+          _isLoading = false;
+          if (_isIos) {
+            _errorMessage = e.details;
+          } else
+            _errorMessage = e.message;
+        });
+      }
+    }
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
+  void _changeFromMode(FormMode formMode) {
+    _formKey.currentState.reset();
+    _errorMessage = "";
+    setState(() {
+      _formMode = formMode;
+    });
+  }
+
+  void _forgottenPassword() async {
+    setState(() {
+      _errorMessage = "";
+      _isLoading = true;
+      _validatePassword = false;
+    });
+    if (_validateAndSave()) {
+      try {
+        await _signInModel.resetEmailPassword(_email);
+        _showVerifyEmailSentDialog("Password reset email sent");
         setState(() {
           _isLoading = false;
         });
@@ -94,22 +133,6 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
     }
   }
 
-  void _changeFormToSignUp() {
-    _formKey.currentState.reset();
-    _errorMessage = "";
-    setState(() {
-      _formMode = FormMode.SIGNUP;
-    });
-  }
-
-  void _changeFormToLogin() {
-    _formKey.currentState.reset();
-    _errorMessage = "";
-    setState(() {
-      _formMode = FormMode.LOGIN;
-    });
-  }
-
   Widget _showCircularProgress(){
     if (_isLoading) {
       print("_showCircularProgress loading");
@@ -118,19 +141,19 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
 
   }
 
-  void _showVerifyEmailSentDialog() {
+  void _showVerifyEmailSentDialog(String label) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
-          title: new Text("Verify your account"),
+          title: new Text(label),
           content: new Text("Link to verify account has been sent to your email"),
           actions: <Widget>[
             new FlatButton(
               child: new Text("Dismiss"),
               onPressed: () {
-                _changeFormToLogin();
+                _changeFromMode(FormMode.LOGIN);
                 Navigator.of(context).pop();
               },
             ),
@@ -162,18 +185,52 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
   }
 
   Widget _showBody() {
-    return new Container(
+    return Container(
         padding: EdgeInsets.all(16.0),
         child: new Form(
           key: _formKey,
           child: new ListView(
             shrinkWrap: true,
             children: <Widget>[
-              _showLogo(),
+              Hero(
+                tag: 'hero',
+                child: Container(
+                  height: 200,
+                  width: 200,
+                  margin: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
+                  child: Image.asset('assets/empty-pockets.png'),
+                ),
+              ),
               _showEmailInput(),
               _showPasswordInput(),
-              _showPrimaryButton(),
-              _showSecondaryButton(),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
+                child: SizedBox(
+                  height: 40.0,
+                  child: new RaisedButton(
+                    textTheme: ButtonTextTheme.normal,
+                    elevation: 5.0,
+                    shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                    color: Colors.blue,
+                    child: Text(isLogin ? 'Login' : 'Create account',
+                      style: TextStyle(fontSize: 20.0, color: Colors.white),
+                    ),
+                    onPressed: _validateAndSubmit,
+                  ),
+                ),
+              ),
+              FlatButton(
+                child: Text(isLogin ? 'Create an account' : 'Have an account? Sign in',
+                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),
+                ),
+                onPressed: () => _changeFromMode(isLogin ? FormMode.SIGNUP : FormMode.LOGIN),
+              ),
+              FlatButton(
+                child: Text('Forgotten password?',
+                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),
+                ),
+                onPressed: _forgottenPassword,
+              ),
               _showErrorMessage(),
             ],
           ),
@@ -185,7 +242,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
       return new Text(
         _errorMessage,
         style: TextStyle(
-            fontSize: 13.0,
+            fontSize: 16.0,
             color: Colors.red,
             height: 1.0,
             fontWeight: FontWeight.w300),
@@ -197,22 +254,11 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
     }
   }
 
-  Widget _showLogo() {
-    return new Hero(
-      tag: 'hero',
-      child: Container(
-        height: 200,
-        width: 200,
-        margin: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
-        child: Image.asset('assets/empty-pockets.png'),
-      ),
-    );
-  }
-
   Widget _showEmailInput() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 50.0, 0.0, 0.0),
+      padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
       child: new TextFormField(
+        // defaults to subhead text style
         maxLines: 1,
         keyboardType: TextInputType.emailAddress,
         autofocus: false,
@@ -230,7 +276,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
 
   Widget _showPasswordInput() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
+      padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
       child: new TextFormField(
         maxLines: 1,
         obscureText: true,
@@ -241,42 +287,12 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
               Icons.lock,
               color: Colors.grey,
             )),
-        validator: (value) => value.isEmpty ? 'Password can\'t be empty' : null,
+        validator: (value) =>
+            _validatePassword && value.isEmpty ? 'Password can\'t be empty'
+            : (!_validatePassword && value.isNotEmpty ? 'Password not required for reset' : null),
         onSaved: (value) => _password = value,
       ),
     );
   }
 
-  Widget _showSecondaryButton() {
-    return new FlatButton(
-      child: _formMode == FormMode.LOGIN
-          ? new Text('Create an account',
-          style: new TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300))
-          : new Text('Have an account? Sign in',
-          style:
-          new TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300)),
-      onPressed: _formMode == FormMode.LOGIN
-          ? _changeFormToSignUp
-          : _changeFormToLogin,
-    );
-  }
-
-  Widget _showPrimaryButton() {
-    return new Padding(
-        padding: EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
-        child: SizedBox(
-          height: 40.0,
-          child: new RaisedButton(
-            elevation: 5.0,
-            shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-            color: Colors.blue,
-            child: _formMode == FormMode.LOGIN
-                ? new Text('Login',
-                style: new TextStyle(fontSize: 20.0, color: Colors.white))
-                : new Text('Create account',
-                style: new TextStyle(fontSize: 20.0, color: Colors.white)),
-            onPressed: _validateAndSubmit,
-          ),
-        ));
-  }
 }

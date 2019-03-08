@@ -1,5 +1,31 @@
 import 'package:flutter/material.dart';
 
+class ButtonFlat extends StatelessWidget {
+  final Widget child;
+
+  ButtonFlat({
+    this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+
+      ///     final ThemeData theme = Theme.of(context);
+      ///     return Theme(
+      ///       data: theme.copyWith(
+      ///         textTheme: theme.textTheme.copyWith(
+      ///           title: theme.textTheme.title.copyWith(
+      ///             color: titleColor,
+      ///           ),
+      ///         ),
+      ///       ),
+      ///       child: child,
+      ///     );
+      ///   }
+    return Container();
+  }
+}
+
 ThemeData buildTheme() {
   // We're going to define all of our font styles
   // in this method:
@@ -22,6 +48,10 @@ ThemeData buildTheme() {
         color: const Color(0xFFCCC5AF),
         fontSize: 15.0,
       ),
+      // Used for default TextFormField style
+      subhead: base.subhead.copyWith(
+        fontSize: 20.0,
+      ),
     );
   }
 
@@ -43,16 +73,25 @@ ThemeData buildTheme() {
   return base.copyWith(
     appBarTheme: _buildAppBarTheme(base.appBarTheme),
     textTheme: _buildTextTheme(base.textTheme),
-    // New code:
-    primaryColor: const Color(0xFFFFF8E1),    // Appbar background
+    primaryColor: const Color(0xFFFFF8E1),
+    // Appbar background
     indicatorColor: const Color(0xFF807A6B),
     scaffoldBackgroundColor: const Color(0xFFF5F5F5),
-    accentColor: const Color(0xFFFFF8E1),     // CircularProgressIndicator color
+    accentColor: const Color(0xFFFFF8E1),
+    // CircularProgressIndicator color
     iconTheme: IconThemeData(
       color: const Color(0xFFCCC5AF),
       size: 20.0,
     ),
     buttonColor: Colors.white,
+//    buttonTheme: ButtonThemeData(
+////      buttonColor: Colors.blue,
+//      textTheme: ButtonTextTheme.accent,
+////      elevation: 5.0,
+//      shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+////      color: Colors.blue,
+//
+//    ),
   );
 }
 
