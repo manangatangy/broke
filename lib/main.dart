@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Recipes',
           theme: buildTheme(),
-//          initialRoute: "login",
-          initialRoute: "/",    // Temporarily mark this as initialRoute to skip the login protocol.
+          initialRoute: "login",
+//          initialRoute: "/",    // Temporarily mark this as initialRoute to skip the login protocol.
           routes: {
             '/': (context) => HomeScreen(),
             'login': (context) => LoginScreen(),
@@ -46,5 +46,11 @@ class MyApp extends StatelessWidget {
 // Used console for project: https://console.firebase.google.com/u/0/project/broke-c38d3/overview
 // I also came across this: https://www.gotut.net/flutter-firestore-tutorial-part-1/
 // which seems not bad
+// Configuring for ios also required editing the [my_project]/ios/Runner/Info.plist file according to
+// https://pub.dartlang.org/packages/google_sign_in
+// This https://github.com/flutter/plugins/blob/master/packages/google_sign_in/example/lib/main.dart
+// is also a good code example of sign in and extract some id data from the google apis as a http request.
+// Note that the GoogleUserCircleAvatar widget takes a GoogleSignInAccount parameter.
+
 
 // https://github.com/tattwei46/flutter_login_demo
