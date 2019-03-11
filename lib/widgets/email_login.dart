@@ -228,7 +228,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                   height: 200,
                   width: 200,
                   margin: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
-                  child: Image.asset('assets/empty-pockets.png'),
+                  child: Image.asset('assets/empty_pockets.png'),
                 ),
               ),
               emailInputField(),

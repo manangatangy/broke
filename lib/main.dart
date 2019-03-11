@@ -54,3 +54,5 @@ class MyApp extends StatelessWidget {
 
 
 // https://github.com/tattwei46/flutter_login_demo
+// Splash screen info
+// https://flutter.dev/docs/development/ui/assets-and-images#updating-the-launch-screen

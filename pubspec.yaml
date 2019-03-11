@@ -51,7 +51,7 @@ flutter:
     - assets/mail_icon.png
     - assets/piggy-bank.png
     - assets/broke-title.png
-    - assets/empty-pockets.png
+    - assets/empty_pockets.png
 
   fonts:
     - family: Merriweather
