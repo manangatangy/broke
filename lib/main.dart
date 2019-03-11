@@ -56,3 +56,5 @@ class MyApp extends StatelessWidget {
 // https://github.com/tattwei46/flutter_login_demo
 // Splash screen info
 // https://flutter.dev/docs/development/ui/assets-and-images#updating-the-launch-screen
+// This https://medium.com/@diegoveloper/flutter-splash-screen-9f4e05542548
+// might fix the delay before showing the splash screen
