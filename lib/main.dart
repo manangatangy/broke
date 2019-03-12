@@ -3,10 +3,16 @@ import 'package:broke/widgets/email_login.dart';
 import 'package:broke/widgets/home.dart';
 import 'package:broke/widgets/login.dart';
 import 'package:broke/widgets/theme.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  // Ref: https://stackoverflow.com/questions/51112963/how-to-configure-firebase-firestore-settings-with-flutter
+  final Firestore firestore = Firestore();
+  await firestore.settings(timestampsInSnapshotsEnabled: true);
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -58,3 +64,15 @@ class MyApp extends StatelessWidget {
 // https://flutter.dev/docs/development/ui/assets-and-images#updating-the-launch-screen
 // This https://medium.com/@diegoveloper/flutter-splash-screen-9f4e05542548
 // might fix the delay before showing the splash screen
+
+// Create firestore database (use test mode, locked mode TBD https://firebase.google.com/docs/firestore/security/get-started?authuser=0)
+// https://flutter.dev/docs/cookbook/persistence/reading-writing-files
+// PENGUINS
+// https://cdn.empireonline.com/jpg/80/0/0/1200/675/0/0/0/0/0/0/0/t/films/270946/images/GtodNrQnorVd3Gv6f6i4bdEwkP.jpg
+// https://firebase.google.com/docs/firestore/manage-data/delete-data
+// https://pub.dartlang.org/documentation/cloud_firestore/latest/cloud_firestore/CollectionReference-class.html
+// This looks pretty good
+// https://grokonez.com/flutter/flutter-firestore-example-firebase-firestore-crud-operations-with-listview
+
+// This https://github.com/flutter/plugins/blob/master/packages/cloud_firestore/example/lib/main.dart
+// has good code showing firestore options and flow.

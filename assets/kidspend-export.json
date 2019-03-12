@@ -1,0 +1,1408 @@
+{
+  "spends": [
+    {
+      "mAmount": 20,
+      "mCreated": "29 NOV 2014",
+      "mGirl": "RACHEL",
+      "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 33445,
+      "mCreated": "1 DEC 2014",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Debt"
+    },
+    {
+      "mAmount": 4218,
+      "mCreated": "1 DEC 2014",
+      "mGirl": "NINA",
+      "mSpendType": "Debt"
+    },
+    {
+      "mAmount": 3050,
+      "mCreated": "1 DEC 2014",
+      "mGirl": "RACHEL",
+      "mSpendType": "Debt"
+    },
+    {
+      "mAmount": 2450,
+      "mCreated": "2 DEC 2014",
+      "mGirl": "NINA",
+      "mSpendType": "Board"
+    },
+    {
+      "mAmount": 1086,
+      "mCreated": "2 DEC 2014",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 20,
+      "mCreated": "5 DEC 2014",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 30,
+      "mCreated": "12 DEC 2014",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 40,
+      "mCreated": "17 DEC 2014",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 20,
+      "mCreated": "18 DEC 2014",
+      "mGirl": "RACHEL",
+      "mSpendType": "Travel"
+    },
+    {
+      "mAmount": 75,
+      "mCreated": "19 DEC 2014",
+      "mGirl": "NINA",
+      "mSpendType": "Board"
+    },
+    {
+      "mAmount": 650,
+      "mCreated": "20 DEC 2014",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Bike"
+    },
+    {
+      "mAmount": 25,
+      "mCreated": "24 DEC 2014",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 33,
+      "mCreated": "24 DEC 2014",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 40,
+      "mCreated": "25 DEC 2014",
+      "mGirl": "NINA",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 60,
+      "mCreated": "29 DEC 2014",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 114,
+      "mCreated": "31 DEC 2014",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Bike"
+    },
+    {
+      "mAmount": 27,
+      "mCreated": "6 JAN 2015",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Bike"
+    },
+    {
+      "mAmount": 130,
+      "mCreated": "10 JAN 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Party"
+    },
+    {
+      "mAmount": 78,
+      "mCreated": "12 JAN 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 20,
+      "mCreated": "15 JAN 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Money"
+    },
+    {
+      "mAmount": 2304,
+      "mCreated": "29 JAN 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Course"
+    },
+    {
+      "mAmount": 18,
+      "mCreated": "30 JAN 2015",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Bike"
+    },
+    {
+      "mAmount": 50,
+      "mCreated": "10 FEB 2015",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 61,
+      "mCreated": "10 FEB 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 20,
+      "mCreated": "28 FEB 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 20,
+      "mCreated": "28 FEB 2015",
+      "mGirl": "NINA",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 60,
+      "mCreated": "12 MAR 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 70,
+      "mCreated": "21 MAR 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 10,
+      "mCreated": "2 APR 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 30,
+      "mCreated": "4 APR 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Travel"
+    },
+    {
+      "mAmount": 60,
+      "mCreated": "11 APR 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Money"
+    },
+    {
+      "mAmount": 1000,
+      "mCreated": "14 APR 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 60,
+      "mCreated": "15 APR 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 9,
+      "mCreated": "25 APR 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 50,
+      "mCreated": "26 APR 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 2340,
+      "mCreated": "10 MAY 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 60,
+      "mCreated": "12 MAY 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 19115,
+      "mCreated": "18 MAY 2015",
+      "mGirl": "NINA",
+      "mSpendType": "Hecs"
+    },
+    {
+      "mAmount": 20,
+      "mCreated": "18 MAY 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 400,
+      "mCreated": "21 MAY 2015",
+      "mGirl": "NINA",
+      "mSpendType": "Hecs"
+    },
+    {
+      "mAmount": 50,
+      "mCreated": "1 JUN 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 428,
+      "mCreated": "4 JUN 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Computer"
+    },
+    {
+      "mAmount": 7,
+      "mCreated": "4 JUN 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 100,
+      "mCreated": "5 JUN 2015",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Tigrettes"
+    },
+    {
+      "mAmount": 500,
+      "mCreated": "7 JUN 2015",
+      "mGirl": "NINA",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 212,
+      "mCreated": "7 JUN 2015",
+      "mGirl": "NINA",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 712,
+      "mCreated": "9 JUN 2015",
+      "mGirl": "NINA",
+      "mSpendType": "Camera"
+    },
+    {
+      "mAmount": 150,
+      "mCreated": "9 JUN 2015",
+      "mGirl": "NINA",
+      "mSpendType": "TravelCash"
+    },
+    {
+      "mAmount": 150,
+      "mCreated": "9 JUN 2015",
+      "mGirl": "NINA",
+      "mSpendType": "TravelCash"
+    },
+    {
+      "mAmount": 50,
+      "mCreated": "9 JUN 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 160,
+      "mCreated": "14 JUN 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Clothes"
+    },
+    {
+      "mAmount": 10,
+      "mCreated": "14 JUN 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 60,
+      "mCreated": "16 JUN 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 20,
+      "mCreated": "29 JUN 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 126,
+      "mCreated": "4 JUL 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 3000,
+      "mCreated": "10 JUL 2015",
+      "mGirl": "NINA",
+      "mSpendType": "TravelCash"
+    },
+    {
+      "mAmount": 60,
+      "mCreated": "13 JUL 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 50,
+      "mCreated": "19 JUL 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 3000,
+      "mCreated": "29 JUL 2015",
+      "mGirl": "NINA",
+      "mSpendType": "TravelCash"
+    },
+    {
+      "mAmount": 17,
+      "mCreated": "29 JUL 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 55,
+      "mCreated": "29 JUL 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 25,
+      "mCreated": "1 AUG 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 53,
+      "mCreated": "4 AUG 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 30,
+      "mCreated": "4 AUG 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 20,
+      "mCreated": "9 AUG 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 60,
+      "mCreated": "10 AUG 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 20,
+      "mCreated": "16 AUG 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 44,
+      "mCreated": "25 AUG 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Clothes"
+    },
+    {
+      "mAmount": 100,
+      "mCreated": "27 AUG 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 56,
+      "mCreated": "1 SEP 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Clothes"
+    },
+    {
+      "mAmount": 2000,
+      "mCreated": "1 SEP 2015",
+      "mGirl": "NINA",
+      "mSpendType": "TravelCash"
+    },
+    {
+      "mAmount": 100,
+      "mCreated": "1 SEP 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Medical"
+    },
+    {
+      "mAmount": 32,
+      "mCreated": "3 SEP 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Clothes"
+    },
+    {
+      "mAmount": 460,
+      "mCreated": "4 SEP 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 40,
+      "mCreated": "6 SEP 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 60,
+      "mCreated": "10 SEP 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 30,
+      "mCreated": "11 SEP 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 63,
+      "mCreated": "29 SEP 2015",
+      "mGirl": "NINA",
+      "mSpendType": "TravelCash"
+    },
+    {
+      "mAmount": 141,
+      "mCreated": "7 OCT 2015",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 2000,
+      "mCreated": "10 OCT 2015",
+      "mGirl": "NINA",
+      "mSpendType": "TravelCash"
+    },
+    {
+      "mAmount": 350,
+      "mCreated": "18 OCT 2015",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Debt"
+    },
+    {
+      "mAmount": 60,
+      "mCreated": "18 OCT 2015",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 13,
+      "mCreated": "20 OCT 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 30,
+      "mCreated": "25 OCT 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 125,
+      "mCreated": "31 OCT 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 50,
+      "mCreated": "4 NOV 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 6,
+      "mCreated": "4 NOV 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 3000,
+      "mCreated": "11 NOV 2015",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 20,
+      "mCreated": "14 NOV 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 60,
+      "mCreated": "14 NOV 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 17,
+      "mCreated": "18 NOV 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 50,
+      "mCreated": "19 NOV 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 50,
+      "mCreated": "28 NOV 2015",
+      "mGirl": "NINA",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 100,
+      "mCreated": "28 NOV 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 31,
+      "mCreated": "28 NOV 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 100,
+      "mCreated": "9 DEC 2015",
+      "mGirl": "NINA",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 632,
+      "mCreated": "10 DEC 2015",
+      "mGirl": "NINA",
+      "mSpendType": "Car"
+    },
+    {
+      "mAmount": 60,
+      "mCreated": "11 DEC 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 200,
+      "mCreated": "16 DEC 2015",
+      "mGirl": "NINA",
+      "mSpendType": "Debt"
+    },
+    {
+      "mAmount": 45,
+      "mCreated": "18 DEC 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 3000,
+      "mCreated": "19 DEC 2015",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Travel"
+    },
+    {
+      "mAmount": 150,
+      "mCreated": "21 DEC 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Cash"
+    },
+    {
+      "mAmount": 141,
+      "mCreated": "22 DEC 2015",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Travel"
+    },
+    {
+      "mAmount": 202,
+      "mCreated": "23 DEC 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 20,
+      "mCreated": "26 DEC 2015",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 30,
+      "mCreated": "31 DEC 2015",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 15,
+      "mCreated": "31 DEC 2015",
+      "mGirl": "NINA",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 140,
+      "mCreated": "14 JAN 2016",
+      "mGirl": "NINA",
+      "mSpendType": "Car"
+    },
+    {
+      "mAmount": 60,
+      "mCreated": "14 JAN 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 15,
+      "mCreated": "26 JAN 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Alcohol"
+    },
+    {
+      "mAmount": 18,
+      "mCreated": "4 FEB 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 10,
+      "mCreated": "4 FEB 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 50,
+      "mCreated": "14 FEB 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 60,
+      "mCreated": "16 FEB 2016",
+      "mGirl": "NINA",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 60,
+      "mCreated": "21 FEB 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 60,
+      "mCreated": "12 MAR 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 45,
+      "mCreated": "28 MAR 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 55,
+      "mCreated": "7 APR 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 75,
+      "mCreated": "17 APR 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 600,
+      "mCreated": "18 APR 2016",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Debt"
+    },
+    {
+      "mAmount": 50,
+      "mCreated": "22 APR 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 20,
+      "mCreated": "24 APR 2016",
+      "mGirl": "NINA",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 10,
+      "mCreated": "24 APR 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Clothes"
+    },
+    {
+      "mAmount": 38,
+      "mCreated": "24 APR 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Clothes"
+    },
+    {
+      "mAmount": 20,
+      "mCreated": "24 APR 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Clothes"
+    },
+    {
+      "mAmount": 30,
+      "mCreated": "24 APR 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 500,
+      "mCreated": "27 APR 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 60,
+      "mCreated": "27 APR 2016",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 70,
+      "mCreated": "9 MAY 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 122,
+      "mCreated": "15 MAY 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Medical"
+    },
+    {
+      "mAmount": 997,
+      "mCreated": "15 MAY 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Debt"
+    },
+    {
+      "mAmount": 20,
+      "mCreated": "20 MAY 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Cash"
+    },
+    {
+      "mAmount": 20,
+      "mCreated": "28 MAY 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Cash"
+    },
+    {
+      "mAmount": 140,
+      "mCreated": "30 MAY 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Clothes"
+    },
+    {
+      "mAmount": 100,
+      "mCreated": "30 MAY 2016",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 100,
+      "mCreated": "30 MAY 2016",
+      "mGirl": "NINA",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 75,
+      "mCreated": "15 JUN 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 600,
+      "mCreated": "21 JUN 2016",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 29,
+      "mCreated": "3 JUL 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 50,
+      "mCreated": "6 JUL 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 75,
+      "mCreated": "11 JUL 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 20,
+      "mCreated": "29 JUL 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 100,
+      "mCreated": "27 AUG 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 25,
+      "mCreated": "11 SEP 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 90,
+      "mCreated": "11 SEP 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 20,
+      "mCreated": "12 SEP 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 2000,
+      "mCreated": "20 SEP 2016",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 840,
+      "mCreated": "29 SEP 2016",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 45,
+      "mCreated": "11 OCT 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 70,
+      "mCreated": "11 OCT 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 75,
+      "mCreated": "10 NOV 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 800,
+      "mCreated": "23 NOV 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Car"
+    },
+    {
+      "mAmount": 234,
+      "mCreated": "25 NOV 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 343,
+      "mCreated": "27 NOV 2016",
+      "mGirl": "NINA",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 83,
+      "mCreated": "19 DEC 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 88,
+      "mCreated": "19 DEC 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 88,
+      "mCreated": "19 DEC 2016",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 100,
+      "mCreated": "30 JUL 2016",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 2000,
+      "mCreated": "27 DEC 2016",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Debt"
+    },
+    {
+      "mAmount": 200,
+      "mCreated": "9 JAN 2017",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 88,
+      "mCreated": "11 JAN 2017",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 1500,
+      "mCreated": "15 FEB 2017",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 75,
+      "mCreated": "16 FEB 2017",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 1178,
+      "mCreated": "17 FEB 2017",
+      "mGirl": "NINA",
+      "mSpendType": "Car"
+    },
+    {
+      "mAmount": 10,
+      "mCreated": "1 MAR 2017",
+      "mGirl": "RACHEL",
+      "mSpendType": "Money"
+    },
+    {
+      "mAmount": 80,
+      "mCreated": "20 MAR 2017",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 100,
+      "mCreated": "26 MAR 2017",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Tigrettes"
+    },
+    {
+      "mAmount": 285,
+      "mCreated": "2 APR 2017",
+      "mGirl": "RACHEL",
+      "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 1391,
+      "mCreated": "18 APR 2017",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 80,
+      "mCreated": "19 APR 2017",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 100,
+      "mCreated": "6 MAY 2017",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 100,
+      "mCreated": "6 MAY 2017",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 75,
+      "mCreated": "23 MAY 2017",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 670,
+      "mCreated": "21 FEB 2017",
+      "mGirl": "NINA",
+      "mSpendType": "RussiaTrip"
+    },
+    {
+      "mAmount": 1384,
+      "mCreated": "10 FEB 2017",
+      "mGirl": "NINA",
+      "mSpendType": "RussiaTrip"
+    },
+    {
+      "mAmount": 75,
+      "mCreated": "18 JUN 2017",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 9000,
+      "mCreated": "18 JUN 2017",
+      "mGirl": "RACHEL",
+      "mSpendType": "Car-loan-offset-by-acc-balance"
+    },
+    {
+      "mAmount": 9886,
+      "mCreated": "18 JUN 2017",
+      "mGirl": "RACHEL",
+      "mSpendType": "Car"
+    },
+    {
+      "mAmount": 80,
+      "mCreated": "13 JUL 2017",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 135,
+      "mCreated": "26 JUL 2017",
+      "mGirl": "RACHEL",
+      "mSpendType": "Clothes"
+    },
+    {
+      "mAmount": 220,
+      "mCreated": "4 AUG 2017",
+      "mGirl": "RACHEL",
+      "mSpendType": "Medical"
+    },
+    {
+      "mAmount": 300,
+      "mCreated": "10 AUG 2017",
+      "mGirl": "NINA",
+      "mSpendType": "TravelCash"
+    },
+    {
+      "mAmount": 165,
+      "mCreated": "10 AUG 2017",
+      "mGirl": "RACHEL",
+      "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 250,
+      "mCreated": "16 AUG 2017",
+      "mGirl": "NINA",
+      "mSpendType": "TravelCash"
+    },
+    {
+      "mAmount": 180,
+      "mCreated": "28 AUG 2017",
+      "mGirl": "NINA",
+      "mSpendType": "RussiaTrip"
+    },
+    {
+      "mAmount": 65,
+      "mCreated": "17 SEP 2017",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 20,
+      "mCreated": "17 SEP 2017",
+      "mGirl": "RACHEL",
+      "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 100,
+      "mCreated": "26 SEP 2017",
+      "mGirl": "NINA",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 300,
+      "mCreated": "2 OCT 2017",
+      "mGirl": "NINA",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 800,
+      "mCreated": "8 OCT 2017",
+      "mGirl": "NINA",
+      "mSpendType": "Car"
+    },
+    {
+      "mAmount": 200,
+      "mCreated": "9 OCT 2017",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 80,
+      "mCreated": "24 OCT 2017",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 200,
+      "mCreated": "1 NOV 2017",
+      "mGirl": "RACHEL",
+      "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 200,
+      "mCreated": "15 NOV 2017",
+      "mGirl": "NINA",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 70,
+      "mCreated": "16 NOV 2017",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 66,
+      "mCreated": "21 NOV 2017",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 60,
+      "mCreated": "13 DEC 2017",
+      "mGirl": "NINA",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 250,
+      "mCreated": "27 DEC 2017",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 450,
+      "mCreated": "27 DEC 2017",
+      "mGirl": "NINA",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 280,
+      "mCreated": "27 DEC 2017",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 75,
+      "mCreated": "12 JAN 2018",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 55,
+      "mCreated": "25 JAN 2018",
+      "mGirl": "RACHEL",
+      "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 400,
+      "mCreated": "17 FEB 2018",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 200,
+      "mCreated": "21 FEB 2018",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Tigrettes"
+    },
+    {
+      "mAmount": 50,
+      "mCreated": "15 MAR 2018",
+      "mGirl": "NINA",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 51,
+      "mCreated": "16 APR 2018",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 272,
+      "mCreated": "30 APR 2018",
+      "mGirl": "NINA",
+      "mSpendType": "Debt"
+    },
+    {
+      "mAmount": 51,
+      "mCreated": "16 MAY 2018",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 51,
+      "mCreated": "10 JUN 2018",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 212,
+      "mCreated": "20 JUN 2018",
+      "mGirl": "NINA",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 50,
+      "mCreated": "8 JUL 2018",
+      "mGirl": "NINA",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 40,
+      "mCreated": "10 AUG 2018",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 60,
+      "mCreated": "10 AUG 2018",
+      "mGirl": "RACHEL",
+      "mSpendType": "Medical"
+    },
+    {
+      "mAmount": 8000,
+      "mCreated": "11 SEP 2018",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Course"
+    },
+    {
+      "mAmount": 219,
+      "mCreated": "11 SEP 2018",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 4,
+      "mCreated": "11 SEP 2018",
+      "mGirl": "NINA",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 184,
+      "mCreated": "11 SEP 2018",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 40,
+      "mCreated": "20 SEP 2018",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 60,
+      "mCreated": "4 NOV 2018",
+      "mGirl": "RACHEL",
+      "mSpendType": "Gift"
+    },
+    {
+      "mAmount": 40,
+      "mCreated": "19 NOV 2018",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 40,
+      "mCreated": "15 DEC 2018",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 1167,
+      "mCreated": "18 DEC 2018",
+      "mGirl": "CLAIRE",
+      "mSpendType": "PC"
+    },
+    {
+      "mAmount": 500,
+      "mCreated": "19 DEC 2018",
+      "mGirl": "RACHEL",
+      "mSpendType": "Apple"
+    },
+    {
+      "mAmount": 500,
+      "mCreated": "30 DEC 2018",
+      "mGirl": "RACHEL",
+      "mSpendType": "Computer"
+    },
+    {
+      "mAmount": 2269,
+      "mCreated": "8 JAN 2019",
+      "mGirl": "RACHEL",
+      "mSpendType": "Medical"
+    },
+    {
+      "mAmount": 1745,
+      "mCreated": "8 JAN 2019",
+      "mGirl": "RACHEL",
+      "mSpendType": "Car"
+    },
+    {
+      "mAmount": 40,
+      "mCreated": "15 JAN 2019",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 250,
+      "mCreated": "21 JAN 2019",
+      "mGirl": "RACHEL",
+      "mSpendType": "TafeCourse"
+    },
+    {
+      "mAmount": 290,
+      "mCreated": "18 FEB 2019",
+      "mGirl": "RACHEL",
+      "mSpendType": "Debt"
+    },
+    {
+      "mAmount": 40,
+      "mCreated": "24 FEB 2019",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 106,
+      "mCreated": "26 FEB 2019",
+      "mGirl": "RACHEL",
+      "mSpendType": "TafeCourse"
+    },
+    {
+      "mAmount": 27,
+      "mCreated": "3 MAR 2019",
+      "mGirl": "RACHEL",
+      "mSpendType": "TafeCourse"
+    },
+    {
+      "mAmount": 15,
+      "mCreated": "12 MAR 2019",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Misc"
+    }
+  ]
+}

@@ -1,8 +1,10 @@
+import 'dart:convert';
 
 import 'package:broke/models/recipe.dart';
 import 'package:broke/models/sign_in.dart';
 import 'package:broke/models/store.dart';
 import 'package:broke/widgets/recipe_card.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -85,32 +87,81 @@ class HomeScreenState extends State<HomeScreen> {
         ),
       );
     }
+
     Widget _buildSettings() {
       return Column(
         children: <Widget>[
-          Center(child: Icon(Icons.settings),),
+          Center(
+            child: Icon(Icons.settings),
+          ),
           RaisedButton(
             onPressed: () async {
-              setState(() { isBusy = true; });
+              setState(() {
+                isBusy = true;
+              });
               await SignInModel.of(context).signOut();
-              setState(() { isBusy = false; });
+              setState(() {
+                isBusy = false;
+              });
               Navigator.of(context).pushNamedAndRemoveUntil("login", (Route<dynamic> route) => false);
             },
             child: Text('Sign out'),
           ),
+          RaisedButton(
+            child: Text('Delete spend documents'),
+            onPressed: () async {
+              CollectionReference spendsRef = Firestore.instance.collection('spends');
+              QuerySnapshot snapshot = await spendsRef.getDocuments();
+
+              Firestore.instance.runTransaction((Transaction tx) async {
+                List<DocumentSnapshot> documents = snapshot.documents;
+                print("spend collection has ${documents.length} documents");
+                documents.forEach((documentSnapshot) {
+                  String docId = documentSnapshot.documentID;
+                  DocumentReference spendRef = Firestore.instance.collection('spends').document(docId);
+                  print("deleting document: ${spendRef.path}");
+                  spendRef.delete();
+                });
+              });
+            },
+            //
+          ),
+          RaisedButton(
+            child: Text('import documents from assets'),
+            onPressed: () async {
+              // Directory appDocDir = await getApplicationDocumentsDirectory();
+              //String appDocPath = appDocDir.path;
+              String contents = await DefaultAssetBundle.of(context).loadString('assets/kidspend-export.json');
+              Map<String, dynamic> parsedJson = json.decode(contents);
+              var spends = parsedJson['spends'];
+//              print("spends $spends");
+              print("type ${spends.runtimeType}");
+              List<dynamic> spendList = parsedJson['spends'];
+              spendList.forEach((dynamic element) {
+                print("spend $element");
+                print("type ${element.runtimeType}");
+                Map<String, dynamic> spend = element;
+                spend.forEach((String key, dynamic value) {
+                  print("key $key");
+                  print("value $value");
+                  print("type ${value.runtimeType}");
+                });
+
+
+                // add(Map<String, dynamic> data) → Future<DocumentReference>
+
+              });
+            },
+          ),
         ],
       );
     }
+
     return TabBarView(
       children: [
-        _buildRecipes(
-            recipes.where((recipe) => recipe.type == RecipeType.food).toList()),
-        _buildRecipes(recipes
-            .where((recipe) => recipe.type == RecipeType.drink)
-            .toList()),
-        _buildRecipes(recipes
-            .where((recipe) => userFavorites.contains(recipe.id))
-            .toList()),
+        _buildRecipes(recipes.where((recipe) => recipe.type == RecipeType.food).toList()),
+        _buildRecipes(recipes.where((recipe) => recipe.type == RecipeType.drink).toList()),
+        _buildRecipes(recipes.where((recipe) => userFavorites.contains(recipe.id)).toList()),
         _buildSettings(),
       ],
     );
