@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:broke/models/recipe.dart';
 import 'package:broke/models/sign_in.dart';
+import 'package:broke/models/spend.dart';
 import 'package:broke/models/store.dart';
 import 'package:broke/widgets/recipe_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -133,29 +134,42 @@ class HomeScreenState extends State<HomeScreen> {
               //String appDocPath = appDocDir.path;
               String contents = await DefaultAssetBundle.of(context).loadString('assets/kidspend-export.json');
               Map<String, dynamic> parsedJson = json.decode(contents);
-              var spends = parsedJson['spends'];
+//              var spends = parsedJson['spends'];
 //              print("spends $spends");
-              print("type ${spends.runtimeType}");
+//              print("type ${spends.runtimeType}");
+              int count = 0;
               List<dynamic> spendList = parsedJson['spends'];
-              spendList.forEach((dynamic element) {
-                print("spend $element");
-                print("type ${element.runtimeType}");
-                Map<String, dynamic> spend = element;
-                spend.forEach((String key, dynamic value) {
-                  print("key $key");
-                  print("value $value");
-                  print("type ${value.runtimeType}");
-                });
-
-
-                // add(Map<String, dynamic> data) → Future<DocumentReference>
+              CollectionReference spendsRef = Firestore.instance.collection('spends');
+              spendList.forEach((dynamic element) async {
+                if (++count <= 200000) {
+                  print("spend $element");
+//                  print("type ${element.runtimeType}");
+                  Map<String, dynamic> map = element;
+                  Spend spend = Spend.fromKidspend(map);
+//                  map.forEach((String key, dynamic value) {
+//                    print("key $key");
+//                    print("value $value");
+//                    print("type ${value.runtimeType}");
+//                  });
+                  print("spend $spend");
+                  DocumentReference docRef = await spendsRef.add(spend.getMap());
+                  print("docRef.path ${docRef.path}");
+                }
 
               });
+              print("added $count docs");
             },
           ),
         ],
       );
     }
+
+//    Future<void> _addMessage() async {
+//      await messages.add(<String, dynamic>{
+//        'message': 'Hello world!',
+//        'created_at': FieldValue.serverTimestamp(),
+//      });
+//    }
 
     return TabBarView(
       children: [

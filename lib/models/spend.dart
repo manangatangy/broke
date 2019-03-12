@@ -8,7 +8,7 @@ class Spend {
   final String category;
   final int amount;
   final String note;
-  final Timestamp createDate;
+  final Timestamp created;
 
   Spend({
     this.id,
@@ -16,15 +16,40 @@ class Spend {
     this.category,
     this.amount,
     this.note,
-    this.createDate,
+    this.created,
   });
 
+  @override
+  String toString() {
+    return "Spend{id:$id,face:$face,category:$category,amount:$amount,created:$created,note:$note}";
+  }
+
+  /// The parameter is parsed from the json file, as exported from kidspend.
+  factory Spend.fromKidspend(Map<String, dynamic> map) {
+    return Spend(
+      face: map['mGirl'],
+      category: map['mSpendType'],
+      amount: map['mAmount'],
+      created: Timestamp.fromDate(fromKidspendDate(map['mCreated'])),
+    );
+  }
+
+  Map<String, dynamic> getMap() {
+    Map<String, dynamic> map = Map<String, dynamic>();
+    map['face'] = face;
+    map['category'] = category;
+    map['amount'] = amount;
+    map['note'] = note;
+    map['created'] = created;
+    return map;
+  }
   // Expecting a format like: "12 MAR 2019"
-  static DateTime from(String kidspendDate) {
+  static DateTime fromKidspendDate(String kidspendDate) {
     DateTime dateTime;
     List<String> fields = kidspendDate.split(" ");
-    if (fields?.length != 3) {
-      int year = int.tryParse(fields[0]);
+//    print("parsed $kidspendDate => $fields");
+    if (fields?.length == 3) {
+      int day = int.parse(fields[0]);
       int month = 0;
       switch (fields[1].toLowerCase()) {
         case "jan": month = 1; break;
@@ -38,11 +63,12 @@ class Spend {
         case "sep": month = 9; break;
         case "oct": month = 10; break;
         case "nov": month = 11; break;
-        case "dev": month = 12; break;
+        case "dec": month = 12; break;
         default: throw Exception("bad month in kidspendDate: '" + kidspendDate + "'");
       }
-      int day = int.tryParse(fields[2]);
+      int year = int.parse(fields[2]);
       dateTime = DateTime(year, month, day);
+      print("parsed $kidspendDate => $dateTime");
     }
     return dateTime;
   }
@@ -58,12 +84,6 @@ I/flutter (15657): value 15
 I/flutter (15657): type int
 I/flutter (15657): key mCreated
 I/flutter (15657): value 12 MAR 2019
-I/flutter (15657): type String
-I/flutter (15657): key mGirl
-I/flutter (15657): value CLAIRE
-I/flutter (15657): type String
-I/flutter (15657): key mSpendType
-I/flutter (15657): value Misc
 I/flutter (15657): type String
 
                  */
