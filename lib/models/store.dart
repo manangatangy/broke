@@ -1,4 +1,99 @@
 import 'package:broke/models/recipe.dart';
+import 'package:broke/models/spend.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+List<Spend> getSpends() {
+  return [
+    Spend(
+      id:'0',
+      face: 'CLAIRE',
+      category: 'Debt',
+      amount: 122,
+      note: 'just some extra text',
+      created: Timestamp.fromDate(DateTime(2017, 10, 21)),
+    ),
+    Spend(
+      id:'0',
+      face: 'CLAIRE',
+      category: 'Phone',
+      amount: 122,
+      created: Timestamp.fromDate(DateTime(2017, 10, 21)),
+    ),
+    Spend(
+      id:'0',
+      face: 'CLAIRE',
+      category: 'Debt',
+      amount: 122,
+      note: 'just extra text',
+      created: Timestamp.fromDate(DateTime(2017, 10, 21)),
+    ),
+    Spend(
+      id:'0',
+      face: 'CLAIRE',
+      category: 'Phone',
+      amount: 122,
+      created: Timestamp.fromDate(DateTime(2017, 10, 21)),
+    ),
+    Spend(
+      id:'0',
+      face: 'CLAIRE',
+      category: 'Debt',
+      amount: 122,
+      created: Timestamp.fromDate(DateTime(2017, 10, 21)),
+    ),
+    Spend(
+      id:'0',
+      face: 'CLAIRE',
+      category: 'Debt',
+      amount: 122,
+      created: Timestamp.fromDate(DateTime(2017, 10, 21)),
+    ),
+    Spend(
+      id:'0',
+      face: 'CLAIRE',
+      category: 'Gift',
+      amount: 122,
+      created: Timestamp.fromDate(DateTime(2017, 10, 21)),
+    ),
+    Spend(
+      id:'0',
+      face: 'CLAIRE',
+      category: 'Gift',
+      note: 'just some extra text',
+      amount: 122,
+      created: Timestamp.fromDate(DateTime(2017, 10, 21)),
+    ),
+    Spend(
+      id:'0',
+      face: 'CLAIRE',
+      category: 'Debt',
+      amount: 122,
+      created: Timestamp.fromDate(DateTime(2017, 10, 21)),
+    ),
+    Spend(
+      id:'0',
+      face: 'CLAIRE',
+      category: 'Debt',
+      amount: 122,
+      created: Timestamp.fromDate(DateTime(2017, 10, 21)),
+    ),
+    Spend(
+      id:'0',
+      face: 'CLAIRE',
+      category: 'Debt',
+      amount: 122,
+      created: Timestamp.fromDate(DateTime(2017, 10, 21)),
+    ),
+    Spend(
+      id:'0',
+      face: 'CLAIRE',
+      category: 'Debt',
+      amount: 122,
+      note: 'just some extra text',
+      created: Timestamp.fromDate(DateTime(2017, 10, 21)),
+    ),
+  ];
+}
 
 List<Recipe> getRecipes() {
   return [
