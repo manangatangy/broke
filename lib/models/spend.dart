@@ -1,6 +1,11 @@
 
 
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
+import 'package:path/path.dart';
 
 class Spend {
   final String id;
@@ -34,6 +39,17 @@ class Spend {
     );
   }
 
+  /// Create new instance from firebase map.
+  Spend.fromMap(Map<String, dynamic> map, String id) : this(
+    id: id,
+    face: map['face'],
+    category: map['category'],
+    amount: map['amount'],
+    note: map['note'],
+    created: map['created'],
+  );
+
+  /// Makes a map suitable for adding to firestore.
   Map<String, dynamic> getMap() {
     Map<String, dynamic> map = Map<String, dynamic>();
     map['face'] = face;
@@ -43,7 +59,41 @@ class Spend {
     map['created'] = created;
     return map;
   }
-  // Expecting a format like: "12 MAR 2019"
+
+  /// Reads the json from the exported kidspend asset and adds each record
+  /// to the firebase "spends" collection (which is first emptied).
+  static void importFromAssets() async {
+    CollectionReference collection = Firestore.instance.collection('spends');
+    QuerySnapshot snapshot = await collection.getDocuments();
+
+    Firestore.instance.runTransaction((Transaction tx) {
+      List<DocumentSnapshot> documents = snapshot.documents;
+      print("deleting ${documents.length} documents from spends collection...");
+      for (int i = 0; i < documents.length; i++) {
+        String docId = documents[i].documentID;
+        DocumentReference document = collection.document(docId);
+        print("deleting document: ${document.path}");
+        document.delete();
+      }
+    });
+
+    // Directory appDocDir = await getApplicationDocumentsDirectory();
+    //String appDocPath = appDocDir.path;
+    String contents = await rootBundle.loadString('assets/kidspend-export.json');
+
+    Map<String, dynamic> parsedJson = json.decode(contents);
+    List<dynamic> list = parsedJson['spends'];
+    for (int i = 0; i < list.length; i++) {
+      Map<String, dynamic> map = list[i];
+      Spend spend = Spend.fromKidspend(map);
+      DocumentReference document = await collection.add(spend.getMap());
+      print("added document: ${document.path}");
+    }
+    print("added ${list.length} documents to spends collection");
+  }
+
+  /// Returns a DateTime made from the kidspend-exported date string.
+  /// Expecting a format like: "12 MAR 2019"
   static DateTime fromKidspendDate(String kidspendDate) {
     DateTime dateTime;
     List<String> fields = kidspendDate.split(" ");
@@ -73,43 +123,4 @@ class Spend {
     return dateTime;
   }
 
-  /*
-
-DateTime date
-
-I/flutter (15657): spend {mAmount: 15, mCreated: 12 MAR 2019, mGirl: CLAIRE, mSpendType: Misc}
-I/flutter (15657): type _InternalLinkedHashMap<String, dynamic>
-I/flutter (15657): key mAmount
-I/flutter (15657): value 15
-I/flutter (15657): type int
-I/flutter (15657): key mCreated
-I/flutter (15657): value 12 MAR 2019
-I/flutter (15657): type String
-
-                 */
-
-//  factory Spend.from(Map<String, dynamic> spend) {}
 }
-
-/*
-/Firestore(15657): To hide this warning and ensure your app does not break, you need to add the following code to your app before calling any other Cloud Firestore methods:
-W/Firestore(15657):
-W/Firestore(15657): FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-W/Firestore(15657): FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
-W/Firestore(15657):     .setTimestampsInSnapshotsEnabled(true)
-W/Firestore(15657):     .build();
-W/Firestore(15657): firestore.setFirestoreSettings(settings);
-W/Firestore(15657):
-W/Firestore(15657): With this change, timestamps stored in Cloud Firestore will be read back as com.google.firebase.Timestamp objects instead of as system java.util.Date objects. So you will also need to update code expecting a java.util.Date to instead expect a Timestamp. For example:
-W/Firestore(15657):
-W/Firestore(15657): // Old:
-W/Firestore(15657): java.util.Date date = snapshot.getDate("created_at");
-W/Firestore(15657): // New:
-W/Firestore(15657): Timestamp timestamp = snapshot.getTimestamp("created_at");
-W/Firestore(15657): java.util.Date date = timestamp.toDate();
-W/Firestore(15657):
-W/Firestore(15657): Please audit all existing usages of java.util.Date when you enable the new behavior. In a future release, the behavior will be changed to the new behavior, so if you do not follow these steps, YOUR APP MAY BREAK.
-
- com.google.firebase.Timestamp
-
- */
