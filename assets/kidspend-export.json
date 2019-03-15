@@ -1403,6 +1403,20 @@
       "mCreated": "12 MAR 2019",
       "mGirl": "CLAIRE",
       "mSpendType": "Misc"
+    },
+    {
+      "mAmount": 15,
+      "mCreated": "11 MAR 2019",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Misc",
+      "note": "Replacement bike lock"
+    },
+    {
+      "mAmount": 240,
+      "mCreated": "15 MAR 2019",
+      "mGirl": "RACHEL",
+      "mSpendType": "TafeCourse",
+      "note": "Reverse car payments"
     }
   ]
 }
