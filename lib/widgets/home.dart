@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:broke/models/sign_in.dart';
 import 'package:broke/models/spend.dart';
+import 'package:broke/widgets/images.dart';
 import 'package:broke/widgets/spend_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +21,75 @@ class HomeScreenState extends State<HomeScreen> {
     isBusy = false;
   }
 
-  @override
+  int _screen = 0;
+
   Widget build(BuildContext context) {
+    return new DefaultTabController(
+      length: IconList.length,
+      child: new Scaffold(
+        appBar: new AppBar(
+          title: new Text('Navigation example'),
+        ),
+        body: new TabBarView(
+          children: new List<Widget>.generate(IconList.length, (int index) {
+            switch (_screen) {
+              case 0: return new Center(
+                child: new Text('First screen, ${IconList[index]}'),
+              );
+              case 1: return new Center(
+                child: new Text('Second screen'),
+              );
+            }
+          }),
+        ),
+        bottomNavigationBar: new Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            new AnimatedCrossFade(
+              firstChild: new Material(
+                color: Theme
+                    .of(context)
+                    .primaryColor,
+                child: new TabBar(
+                  isScrollable: true,
+                  tabs: new List.generate(IconList.length, (index) {
+                    return new Tab(text: IconList[index].toUpperCase());
+                  }),
+                ),
+              ),
+              secondChild: new Container(),
+              crossFadeState: _screen == 0
+                  ? CrossFadeState.showFirst
+                  : CrossFadeState.showSecond,
+              duration: const Duration(milliseconds: 300),
+            ),
+            new BottomNavigationBar(
+              currentIndex: _screen,
+              onTap: (int index) {
+                setState(() {
+                  _screen = index;
+                });
+              },
+              items: [
+                new BottomNavigationBarItem(
+                  icon: new Icon(Icons.airplanemode_active),
+                  title: new Text('Airplane'),
+                ),
+                new BottomNavigationBarItem(
+                  icon: new Icon(Icons.motorcycle),
+                  title: new Text('Motorcycle'),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget buildx(BuildContext context) {
     return Stack(
       children: <Widget>[
         _buildTabView(
@@ -47,17 +115,11 @@ class HomeScreenState extends State<HomeScreen> {
             elevation: 2.0,
             bottom: TabBar(
               labelColor: Theme.of(context).indicatorColor,
-              tabs: [
-                Tab(
-                  icon: ImageIcon(
-                    AssetImage('assets/icons/bicycle.png'),
-                    size: _iconSize,
-                  ),
-                ),
-                Tab(icon: Icon(Icons.local_drink, size: _iconSize)),
-                Tab(icon: Icon(Icons.favorite, size: _iconSize)),
-                Tab(icon: Icon(Icons.settings, size: _iconSize)),
-              ],
+              tabs: getIcons(_iconSize),
+//                Tab(icon: Icon(Icons.local_drink, size: _iconSize)),
+//                Tab(icon: Icon(Icons.favorite, size: _iconSize)),
+//                Tab(icon: Icon(Icons.settings, size: _iconSize)),
+
             ),
           ),
         ),

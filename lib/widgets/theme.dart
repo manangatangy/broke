@@ -21,7 +21,8 @@ const TextStyle TextStyleRaisedButton = const TextStyle(
 FlatButton appFlatButton({String data, @required VoidCallback onPressed}) {
   return FlatButton(
     onPressed: onPressed,
-    child: Text(data,
+    child: Text(
+      data,
       style: TextStyleFlatButton,
     ),
   );
@@ -34,7 +35,8 @@ RaisedButton appRaisedButton({
   return RaisedButton(
     elevation: 5.0,
     onPressed: onPressed,
-    child: Text(data,
+    child: Text(
+      data,
       style: TextStyleRaisedButton,
     ),
     // shape and color are set via MaterialApp.theme.themeData
@@ -50,19 +52,18 @@ class ButtonFlat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-      ///     final ThemeData theme = Theme.of(context);
-      ///     return Theme(
-      ///       data: theme.copyWith(
-      ///         textTheme: theme.textTheme.copyWith(
-      ///           title: theme.textTheme.title.copyWith(
-      ///             color: titleColor,
-      ///           ),
-      ///         ),
-      ///       ),
-      ///       child: child,
-      ///     );
-      ///   }
+    ///     final ThemeData theme = Theme.of(context);
+    ///     return Theme(
+    ///       data: theme.copyWith(
+    ///         textTheme: theme.textTheme.copyWith(
+    ///           title: theme.textTheme.title.copyWith(
+    ///             color: titleColor,
+    ///           ),
+    ///         ),
+    ///       ),
+    ///       child: child,
+    ///     );
+    ///   }
     return Container();
   }
 }
@@ -86,7 +87,8 @@ ThemeData buildTheme() {
       ),
       // Used for the recipes' duration:
       caption: base.caption.copyWith(
-        color: const Color(0xFFCCC5AF),
+        // Used in unselected BottomNavigationBarItem text and icon
+        color: const Color(0xFF33C5AF),
         fontSize: 15.0,
       ),
       // Used for default TextFormField style
@@ -102,16 +104,15 @@ ThemeData buildTheme() {
   AppBarTheme _buildAppBarTheme(AppBarTheme appBarBase) {
     return appBarBase.copyWith(
       textTheme: base.primaryTextTheme.copyWith(
-        title: base.primaryTextTheme.title.copyWith(
-          color: Color(0xff223344),
-        )
-      ),
+          title: base.primaryTextTheme.title.copyWith(
+        color: Color(0xff223344),
+      )),
 //      color: const Color(0xFF223333),
     );
   }
 
   // And apply changes on it:
-  return base.copyWith(
+  ThemeData old = base.copyWith(
     appBarTheme: _buildAppBarTheme(base.appBarTheme),
     textTheme: _buildTextTheme(base.textTheme),
     primaryColor: const Color(0xFFFFF8E1),
@@ -127,13 +128,19 @@ ThemeData buildTheme() {
     buttonColor: Colors.white,
 
     buttonTheme: ButtonThemeData(
-      buttonColor: Colors.blue,   // Body color for raisedButton
+      buttonColor: Colors.blue, // Body color for raisedButton
       textTheme: ButtonTextTheme.primary,
 //      elevation: 5.0,
       shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(10.0)),
 //      color: Colors.blue,
-
     ),
+  );
+
+  return ThemeData(
+    brightness: Brightness.dark,
+    primarySwatch: Colors.blueGrey,
+    accentColor: Colors.greenAccent,
+    accentColorBrightness: Brightness.light,
   );
 }
 
