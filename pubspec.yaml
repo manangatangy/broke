@@ -54,6 +54,35 @@ flutter:
     - assets/broke-title.png
     - assets/empty_pockets.png
     - assets/kidspend-export.json
+    - assets/icons/bicycle.png
+    - assets/icons/bunny.png
+    - assets/icons/car.png
+    - assets/icons/cat.png
+    - assets/icons/coins.png
+    - assets/icons/credit.png
+    - assets/icons/dance.png
+    - assets/icons/diploma.png
+    - assets/icons/doughnut.png
+    - assets/icons/first-aid-kit.png
+    - assets/icons/football.png
+    - assets/icons/groceries.png
+    - assets/icons/hand-money.png
+    - assets/icons/hanger.png
+    - assets/icons/laptop.png
+    - assets/icons/makeup.png
+    - assets/icons/mascara.png
+    - assets/icons/mobile-app.png
+    - assets/icons/mobile-phone.png
+    - assets/icons/money-bag.png
+    - assets/icons/mortarboard.png
+    - assets/icons/photo-camera.png
+    - assets/icons/pint.png
+    - assets/icons/shopping-bag.png
+    - assets/icons/stethoscope.png
+    - assets/icons/sunset.png
+    - assets/icons/tiger.png
+    - assets/icons/video-camera.png
+    - assets/icons/world.png
 
   fonts:
     - family: Merriweather

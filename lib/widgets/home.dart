@@ -33,19 +33,27 @@ class HomeScreenState extends State<HomeScreen> {
   }
 
   DefaultTabController _buildTabView({Widget body}) {
-    const double _iconSize = 20.0;
+    const double _iconSize = 40.0;
+
+//    ImageIcon(AssetImage('assets/icons/bicycle.png'));
+
     return DefaultTabController(
       length: 4,
       child: Scaffold(
         appBar: PreferredSize(
           // We set Size equal to passed height (50.0) and infinite width:
-          preferredSize: Size.fromHeight(50.0),
+          preferredSize: Size.fromHeight(60.0),
           child: AppBar(
             elevation: 2.0,
             bottom: TabBar(
               labelColor: Theme.of(context).indicatorColor,
               tabs: [
-                Tab(icon: Icon(Icons.restaurant, size: _iconSize)),
+                Tab(
+                  icon: ImageIcon(
+                    AssetImage('assets/icons/bicycle.png'),
+                    size: _iconSize,
+                  ),
+                ),
                 Tab(icon: Icon(Icons.local_drink, size: _iconSize)),
                 Tab(icon: Icon(Icons.favorite, size: _iconSize)),
                 Tab(icon: Icon(Icons.settings, size: _iconSize)),
