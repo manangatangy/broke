@@ -41,6 +41,7 @@ List<Widget> getIcons(double iconSize) {
         AssetImage('assets/icons/' + category + '.png'),
           size: iconSize,
         ),
-      )).toList();
+      ),
+  ).toList();
 }
 

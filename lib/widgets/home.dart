@@ -24,14 +24,14 @@ class HomeScreenState extends State<HomeScreen> {
   int _screen = 0;
 
   Widget build(BuildContext context) {
-    return new DefaultTabController(
+    return DefaultTabController(
       length: IconList.length,
-      child: new Scaffold(
-        appBar: new AppBar(
-          title: new Text('Navigation example'),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Navigation example'),
         ),
-        body: new TabBarView(
-          children: new List<Widget>.generate(IconList.length, (int index) {
+        body: TabBarView(
+          children: List<Widget>.generate(IconList.length, (int index) {
             switch (_screen) {
               case 0: return new Center(
                 child: new Text('First screen, ${IconList[index]}'),
@@ -42,47 +42,24 @@ class HomeScreenState extends State<HomeScreen> {
             }
           }),
         ),
-        bottomNavigationBar: new Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            new AnimatedCrossFade(
-              firstChild: new Material(
-                color: Theme
-                    .of(context)
-                    .primaryColor,
-                child: new TabBar(
-                  isScrollable: true,
-                  tabs: new List.generate(IconList.length, (index) {
-                    return new Tab(text: IconList[index].toUpperCase());
-                  }),
-                ),
-              ),
-              secondChild: new Container(),
-              crossFadeState: _screen == 0
-                  ? CrossFadeState.showFirst
-                  : CrossFadeState.showSecond,
-              duration: const Duration(milliseconds: 300),
-            ),
-            new BottomNavigationBar(
-              currentIndex: _screen,
-              onTap: (int index) {
-                setState(() {
-                  _screen = index;
-                });
-              },
-              items: [
-                new BottomNavigationBarItem(
-                  icon: new Icon(Icons.airplanemode_active),
-                  title: new Text('Airplane'),
-                ),
-                new BottomNavigationBarItem(
-                  icon: new Icon(Icons.motorcycle),
-                  title: new Text('Motorcycle'),
-                ),
-              ],
-            ),
-          ],
+        bottomNavigationBar: Material(
+          color: Theme
+              .of(context)
+              .primaryColor,
+          child: TabBar(
+            isScrollable: true,
+            // This sets the color for text and icon, which would otherwise be white ?
+//            labelColor: Theme.of(context).indicatorColor,
+            tabs: List.generate(IconList.length, (index) {
+              return Tab(
+                  text: IconList[index].toUpperCase(),
+                  icon: ImageIcon(
+                    AssetImage('assets/icons/' + IconList[index] + '.png'),
+                    size: 32.0,
+                  ),
+              );
+            }),
+          ),
         ),
       ),
     );
