@@ -1417,6 +1417,13 @@
       "mGirl": "RACHEL",
       "mSpendType": "TafeCourse",
       "note": "Reverse car payments"
+    },
+    {
+      "mAmount": 40,
+      "mCreated": "18 MAR 2019",
+      "mGirl": "RACHEL",
+      "mSpendType": "TafeCourse",
+      "note": "Supplies"
     }
   ]
 }
