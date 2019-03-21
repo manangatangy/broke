@@ -10,7 +10,7 @@
       "mAmount": 33445,
       "mCreated": "1 DEC 2014",
       "mGirl": "CLAIRE",
-      "mSpendType": "Debt"
+      "mSpendType": "Hecs"
     },
     {
       "mAmount": 4218,
@@ -292,13 +292,13 @@
       "mAmount": 150,
       "mCreated": "9 JUN 2015",
       "mGirl": "NINA",
-      "mSpendType": "TravelCash"
+      "mSpendType": "Travel"
     },
     {
       "mAmount": 150,
       "mCreated": "9 JUN 2015",
       "mGirl": "NINA",
-      "mSpendType": "TravelCash"
+      "mSpendType": "Travel"
     },
     {
       "mAmount": 50,
@@ -340,7 +340,7 @@
       "mAmount": 3000,
       "mCreated": "10 JUL 2015",
       "mGirl": "NINA",
-      "mSpendType": "TravelCash"
+      "mSpendType": "Travel"
     },
     {
       "mAmount": 60,
@@ -358,7 +358,7 @@
       "mAmount": 3000,
       "mCreated": "29 JUL 2015",
       "mGirl": "NINA",
-      "mSpendType": "TravelCash"
+      "mSpendType": "Travel"
     },
     {
       "mAmount": 17,
@@ -430,7 +430,7 @@
       "mAmount": 2000,
       "mCreated": "1 SEP 2015",
       "mGirl": "NINA",
-      "mSpendType": "TravelCash"
+      "mSpendType": "Travel"
     },
     {
       "mAmount": 100,
@@ -472,7 +472,7 @@
       "mAmount": 63,
       "mCreated": "29 SEP 2015",
       "mGirl": "NINA",
-      "mSpendType": "TravelCash"
+      "mSpendType": "Travel"
     },
     {
       "mAmount": 141,
@@ -484,7 +484,7 @@
       "mAmount": 2000,
       "mCreated": "10 OCT 2015",
       "mGirl": "NINA",
-      "mSpendType": "TravelCash"
+      "mSpendType": "Travel"
     },
     {
       "mAmount": 350,
@@ -1066,7 +1066,8 @@
       "mAmount": 9000,
       "mCreated": "18 JUN 2017",
       "mGirl": "RACHEL",
-      "mSpendType": "Car-loan-offset-by-acc-balance"
+      "notes": "Car loan offset by acc balance",
+      "mSpendType": "Offset"
     },
     {
       "mAmount": 9886,
@@ -1096,7 +1097,7 @@
       "mAmount": 300,
       "mCreated": "10 AUG 2017",
       "mGirl": "NINA",
-      "mSpendType": "TravelCash"
+      "mSpendType": "Travel"
     },
     {
       "mAmount": 165,
@@ -1108,7 +1109,7 @@
       "mAmount": 250,
       "mCreated": "16 AUG 2017",
       "mGirl": "NINA",
-      "mSpendType": "TravelCash"
+      "mSpendType": "Travel"
     },
     {
       "mAmount": 180,
@@ -1336,17 +1337,11 @@
       "mAmount": 1167,
       "mCreated": "18 DEC 2018",
       "mGirl": "CLAIRE",
-      "mSpendType": "PC"
+      "mSpendType": "Computer"
     },
     {
       "mAmount": 500,
       "mCreated": "19 DEC 2018",
-      "mGirl": "RACHEL",
-      "mSpendType": "Apple"
-    },
-    {
-      "mAmount": 500,
-      "mCreated": "30 DEC 2018",
       "mGirl": "RACHEL",
       "mSpendType": "Computer"
     },
@@ -1372,7 +1367,13 @@
       "mAmount": 250,
       "mCreated": "21 JAN 2019",
       "mGirl": "RACHEL",
-      "mSpendType": "TafeCourse"
+      "mSpendType": "Course"
+    },
+    {
+      "mAmount": 750,
+      "mCreated": "27 JAN 2019",
+      "mGirl": "NINA",
+      "mSpendType": "Computer"
     },
     {
       "mAmount": 290,
@@ -1390,13 +1391,13 @@
       "mAmount": 106,
       "mCreated": "26 FEB 2019",
       "mGirl": "RACHEL",
-      "mSpendType": "TafeCourse"
+      "mSpendType": "Course"
     },
     {
       "mAmount": 27,
       "mCreated": "3 MAR 2019",
       "mGirl": "RACHEL",
-      "mSpendType": "TafeCourse"
+      "mSpendType": "Course"
     },
     {
       "mAmount": 15,
@@ -1415,15 +1416,27 @@
       "mAmount": 240,
       "mCreated": "15 MAR 2019",
       "mGirl": "RACHEL",
-      "mSpendType": "TafeCourse",
+      "mSpendType": "Course",
       "note": "Reverse car payments"
     },
     {
       "mAmount": 40,
       "mCreated": "18 MAR 2019",
       "mGirl": "RACHEL",
-      "mSpendType": "TafeCourse",
-      "note": "Supplies"
+      "note": "Supplies",
+      "mSpendType": "Course"
+    },
+    {
+      "mAmount": 40,
+      "mCreated": "20 MAR 2019",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 20,
+      "mCreated": "21 MAR 2019",
+      "mGirl": "RACHEL",
+      "mSpendType": "Money"
     }
   ]
 }

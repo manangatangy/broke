@@ -21,66 +21,85 @@ class HomeScreenState extends State<HomeScreen> {
     isBusy = false;
   }
 
-  int _screen = 0;
-
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: IconList.length,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Navigation example'),
-        ),
-        body: TabBarView(
-          children: List<Widget>.generate(IconList.length, (int index) {
-            switch (_screen) {
-              case 0: return new Center(
-                child: new Text('First screen, ${IconList[index]}'),
-              );
-              case 1: return new Center(
-                child: new Text('Second screen'),
-              );
-            }
-          }),
-        ),
-        bottomNavigationBar: Material(
-          color: Theme
-              .of(context)
-              .primaryColor,
-          child: TabBar(
-            isScrollable: true,
-            // This sets the color for text and icon, which would otherwise be white ?
-//            labelColor: Theme.of(context).indicatorColor,
-            tabs: List.generate(IconList.length, (index) {
-              return Tab(
-                  text: IconList[index].toUpperCase(),
-                  icon: ImageIcon(
-                    AssetImage('assets/icons/' + IconList[index] + '.png'),
-                    size: 32.0,
-                  ),
-              );
-            }),
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
-  Widget buildx(BuildContext context) {
+  Widget build(BuildContext context) {
     return Stack(
-      children: <Widget>[
-        _buildTabView(
-          body: _buildTabsContent(),
-        ),
+      children: [
+        buildContent(context),
+//        _buildTabView(),
         _busyIndicator(),
       ],
     );
   }
 
-  DefaultTabController _buildTabView({Widget body}) {
-    const double _iconSize = 40.0;
+  Map<String, List<Spend>> categoriesMap(List<DocumentSnapshot> documents) {
+    var cats = Map<String, List<Spend>>();
+    documents.forEach((document) {
+      var spend = Spend.fromMap(document.data, document.documentID);
+      if (!cats.containsKey(spend.category)) {
+        cats[spend.category] = List<Spend>();
+      }
+      cats[spend.category].add(spend);
+    });
+    return cats;
+  }
 
-//    ImageIcon(AssetImage('assets/icons/bicycle.png'));
+  Widget buildContent(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+        stream: Firestore.instance.collection('spends').where("face", isEqualTo: "RACHEL").snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) return Text('Error: ${snapshot.error}');
+          if (!snapshot.hasData) return Text('Loading...');
+
+          Map<String, List<Spend>> catMap = categoriesMap(snapshot.data.documents);
+
+          return DefaultTabController(
+            length: catMap.keys.length,
+            child: Scaffold(
+              appBar: AppBar(
+                title: Text('Navigation example'),
+              ),
+              body: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: TabBarView(
+                  children: catMap.keys.map((String cat) =>
+                      Column(
+                        children: <Widget>[
+                          Expanded(
+                            child: ListView(
+                              children: catMap[cat].map((Spend spend) =>
+                                  SpendCard(
+                                    spend: spend,
+                                  ),
+                              ).toList(),
+                            ),
+                          ),
+                        ],
+                      ),
+                  ).toList(),
+                ),
+              ),
+              bottomNavigationBar: Material(
+                color: Theme.of(context).primaryColor,
+                child: TabBar(
+                  isScrollable: true,
+                  tabs: catMap.keys.map((String cat) =>
+                      Tab(
+                        text: cat.toUpperCase(),
+                        icon: getIconForCategory(cat),
+                      ),
+                  ).toList(),
+                ),
+              ),
+            ),
+          );
+        }
+    );
+  }
+
+
+  DefaultTabController _buildTabView() {
+    const double _iconSize = 40.0;
 
     return DefaultTabController(
       length: 4,
@@ -102,7 +121,7 @@ class HomeScreenState extends State<HomeScreen> {
         ),
         body: Padding(
           padding: EdgeInsets.all(5.0),
-          child: body,
+          child: _buildTabsContent(),
         ),
       ),
     );

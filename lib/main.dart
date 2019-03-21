@@ -1,6 +1,7 @@
 import 'package:broke/models/sign_in.dart';
 import 'package:broke/widgets/email_login.dart';
 import 'package:broke/widgets/home.dart';
+import 'package:broke/widgets/home_temp.dart';
 import 'package:broke/widgets/login.dart';
 import 'package:broke/widgets/theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
