@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:broke/models/sign_in.dart';
 import 'package:broke/models/spend.dart';
+import 'package:broke/widgets/fancy_fab.dart';
 import 'package:broke/widgets/images.dart';
 import 'package:broke/widgets/spend_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -58,6 +59,9 @@ class HomeScreenState extends State<HomeScreen> {
             child: Scaffold(
               appBar: AppBar(
                 title: Text('Navigation example'),
+              ),
+              floatingActionButton: FancyFab(
+
               ),
               body: Padding(
                 padding: const EdgeInsets.all(5.0),
