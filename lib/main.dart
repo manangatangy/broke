@@ -1,5 +1,6 @@
 import 'package:broke/models/sign_in.dart';
 import 'package:broke/widgets/email_login.dart';
+import 'package:broke/widgets/firebase_storage_example.dart';
 import 'package:broke/widgets/home.dart';
 import 'package:broke/widgets/home_temp.dart';
 import 'package:broke/widgets/login.dart';
@@ -9,6 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 void main() async {
+  main_firebase_storage_example();
+
+  return;
   // Ref: https://stackoverflow.com/questions/51112963/how-to-configure-firebase-firestore-settings-with-flutter
   final Firestore firestore = Firestore();
   await firestore.settings(timestampsInSnapshotsEnabled: true);
@@ -35,6 +39,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 
 // 1. https://medium.com/@michael.krol/simple-recipes-app-made-in-flutter-introduction-c80964167a19
 // 2. https://medium.com/flutter-community/simple-recipes-app-made-in-flutter-detail-view-and-settings-widget-9a7ca9ebec93
