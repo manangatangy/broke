@@ -91,6 +91,17 @@ class MyApp extends StatelessWidget {
 // This https://github.com/flutter/plugins/blob/master/packages/cloud_firestore/example/lib/main.dart
 // has good code showing firestore options and flow.
 
+
+// https://flutter.dev/docs/cookbook/images/cached-images
+// https://pub.dartlang.org/packages/flutter_cache_manager
+// https://pub.dartlang.org/packages/cached_network_image#-analysis-tab-
+// https://stackoverflow.com/questions/49455079/flutter-save-a-network-image-to-local-directory
+// https://pub.dartlang.org/packages/firebase_storage#-readme-tab-
+// https://stackoverflow.com/questions/44841729/how-to-upload-image-in-flutter
+// https://stackoverflow.com/questions/13955813/how-to-store-and-view-images-on-firebase
+// https://flutterawesome.com/flutter-floating-action-button-with-speed-dial/
+
+
 // <div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 // <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 // <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>

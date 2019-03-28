@@ -1,8 +1,8 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+/// Deprecated
+///
 const List<String> IconList = const<String>[
   'bicycle',
   'bunny',
