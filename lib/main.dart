@@ -1,41 +1,49 @@
-import 'package:broke/models/sign_in.dart';
+import 'package:broke/services/bloc.dart';
+import 'package:broke/services/sign_in.dart';
 import 'package:broke/widgets/email_login.dart';
 import 'package:broke/widgets/firebase_storage_example.dart';
 import 'package:broke/widgets/home.dart';
-import 'package:broke/widgets/home_temp.dart';
 import 'package:broke/widgets/login.dart';
+import 'package:broke/widgets/settings.dart';
 import 'package:broke/widgets/theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 void main() async {
-  main_firebase_storage_example();
-
-  return;
   // Ref: https://stackoverflow.com/questions/51112963/how-to-configure-firebase-firestore-settings-with-flutter
   final Firestore firestore = Firestore();
   await firestore.settings(timestampsInSnapshotsEnabled: true);
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  // The homeRoute is the post-login/check landing screen.
+  final String homeRoute = '/';
+//  final String homeRoute = 'settings';
+//  final String homeRoute = 'upload';
+
   @override
   Widget build(BuildContext context) {
-    return ScopedModel<SignInModel>(
-        model: SignInModel(),
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Recipes',
-          theme: buildTheme(),
-          initialRoute: "login",
-//          initialRoute: "/",    // Temporarily mark this as initialRoute to skip the login protocol.
-          routes: {
-            '/': (context) => HomeScreen(),
-            'login': (context) => LoginScreen(),
-            'email': (context) => EmailLoginScreen(),
-          },
-        )
+    return ScopedModel<Bloc>(
+      model: Bloc(),
+      child: ScopedModel<SignInModel>(
+          model: SignInModel(),
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Recipes',
+            theme: buildTheme(),
+            initialRoute: 'login',
+            routes: {
+              'login': (context) => LoginScreen(homeRoute: homeRoute,),
+              'email': (context) => EmailLoginScreen(homeRoute: homeRoute,),
+              '/': (context) => HomeScreen(),
+              'upload': (context) => UploadPage(),
+              'settings': (context) => SettingsScreen(),
+            },
+          )
+      ),
     );
   }
 }

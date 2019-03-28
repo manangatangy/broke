@@ -1,17 +1,23 @@
-# broke
+# Broke
 
-A new Flutter project.
+Record and browse all the times you give $ to you kids.
 
-## Getting Started
+### Project Structure
 
-This project is a starting point for a Flutter application.
+Folders for 
+- models: data structures for database and other records
+- widgets: UI components
+- services: app-wide, bloc, scoped-models etc
 
-A few resources to get you started if this is your first Flutter project:
+### Data flow
+The Bloc manages various streams which distribute data around the
+app.
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
+The Repo class collects together data from firestore and uses it 
+to form objects better suited to the ui layer.  These objects are
+passed to the bloc, which distributes them to the
+appropriate parts of the widget tree.
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
-# broke
+
+
+

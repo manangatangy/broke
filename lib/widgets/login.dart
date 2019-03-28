@@ -1,11 +1,12 @@
-import 'package:broke/models/sign_in.dart';
-import 'package:broke/widgets/email_login.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:broke/models/firebase_model.dart';
+import 'package:broke/services/sign_in.dart';
 import 'package:flutter/material.dart';
-import 'package:scoped_model/scoped_model.dart';
 
 /// This is the entry login screen with buttons for login by email and google.
 class LoginScreen extends StatefulWidget {
+  final String homeRoute;
+  LoginScreen({@required this.homeRoute});
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -20,12 +21,13 @@ class _LoginScreenState extends State<LoginScreen> {
     model = SignInModel.of(context);
   }
 
-  void _onSignIn(bool isSignedIn) {
+  void _onSignIn(bool isSignedIn) async {
     print("LoginScreenState isSignedIn => $isSignedIn");
     if (isSignedIn) {
+//      await FirebaseModel.of(context).configure();
+//      firebaseStorage = FirebaseStorage();
       // This removes the current route (without rebuilding it).
-      // TODO maybe move this code to the model, called automatically
-      Navigator.of(context).pushNamedAndRemoveUntil("/", (Route<dynamic> route) => false);
+      Navigator.of(context).pushNamedAndRemoveUntil(widget.homeRoute, (Route<dynamic> route) => false);
     } else {
       setState(() {}); // Rebuild with new model.authStatus
     }
@@ -70,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         asset: "assets/g_logo.png",
                         onPressed: () async {
                           try {
-                            // The following calls will exception is user abandons sign in.
+                            // The following calls will exceptionate if user abandons sign in.
                             bool isSignedIn = await model.signInWithGoogleSilently();
                             if (!isSignedIn) {
                               isSignedIn = await model.signInWithGoogleInteractively();

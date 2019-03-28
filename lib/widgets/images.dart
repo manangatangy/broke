@@ -77,6 +77,7 @@ const Map<String, String> CatMap = const<String, String>{
   'world': 'Travel',
 };
 
+// iconMap is a reverse map of CatMap. Ie. iconMap:category->pngFile, where CatMap:pngFile->category
 Map<String, String> iconMap;
 
 ImageIcon getIconForCategory(String category) {

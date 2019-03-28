@@ -1,9 +1,12 @@
-import 'package:broke/models/sign_in.dart';
+import 'package:broke/services/sign_in.dart';
 import 'package:broke/widgets/theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class EmailLoginScreen extends StatefulWidget {
+  final String homeRoute;
+  EmailLoginScreen({@required this.homeRoute});
+
   @override
   State<StatefulWidget> createState() => new _EmailLoginScreenState();
 }
@@ -81,8 +84,8 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
           bool signedIn = await _signInModel.signInWithEmail(_email, _password);
           if (signedIn) {
             // From: https://medium.com/flutter-community/flutter-push-pop-push-1bb718b13c31
-            // Remove "login" and current/email routes, and replace with "/"
-            Navigator.of(context).pushNamedAndRemoveUntil("/", (Route<dynamic> route) => false);
+            // Remove "login" and current/email routes, and replace with homeRoute
+            Navigator.of(context).pushNamedAndRemoveUntil(widget.homeRoute, (Route<dynamic> route) => false);
           } else {
             _showSignInFailedDialog();
           }

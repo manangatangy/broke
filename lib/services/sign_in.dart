@@ -26,13 +26,12 @@ enum AuthStatus {
 /// These functions don't change authStatus/firebaseUser.
 /// Use signInWithEmail() to sign in and return success/fail (also updating authStatus/firebaseUser).
 class SignInModel extends Model {
+  static SignInModel of(BuildContext context) => ScopedModel.of<SignInModel>(context);
 
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = new GoogleSignIn();
   AuthStatus authStatus = AuthStatus.INIT;
   FirebaseUser firebaseUser;
-
-  static SignInModel of(BuildContext context) => ScopedModel.of<SignInModel>(context);
 
   /// This function returns true if currently signed in (which may be from
   /// a previous session), also setting user and authStatus.

@@ -10,55 +10,48 @@ import 'package:uuid/uuid.dart';
 const String kTestString = 'Hello world!';
 
 void main_firebase_storage_example() async {
+  FirebaseStorage storage = await configureFirebaseStorage();
+  runApp(MyApp());
+}
+
+Future<FirebaseStorage> configureFirebaseStorage() async {
   final FirebaseApp app = await FirebaseApp.configure(
-    name: 'test',
+    name: 'Broke',
     options: FirebaseOptions(
       // These are the options from
       // https://github.com/flutter/plugins/blob/master/packages/firebase_storage/example/lib/main.dart
-
-//      googleAppID: Platform.isIOS
-//          ? '1:159623150305:ios:4a213ef3dbd8997b'
-//          : '1:159623150305:android:ef48439a0cc0263d',
-//      gcmSenderID: '159623150305',
-//      apiKey: 'AIzaSyChk3KEG7QYrs4kQPLP1tjJNxBTbfCAdgg',
-//      projectID: 'flutter-firebase-plugins',
-
-      // These are my project options
+      // They are not needed when using my own FB instance and auth
       googleAppID: Platform.isIOS
-          ? '1:34815207882:ios:1cacdb75c2d54725'
-          : '1:34815207882:android:1cacdb75c2d54725',
-      gcmSenderID: '34815207882',
-      apiKey: 'AIzaSyCFofWgY4RixlIvbjeUbYzXjlz9k096TO8',
-      projectID: 'broke-c38d3',
+          ? '1:159623150305:ios:4a213ef3dbd8997b'
+          : '1:159623150305:android:ef48439a0cc0263d',
+      gcmSenderID: '159623150305',
+      apiKey: 'AIzaSyChk3KEG7QYrs4kQPLP1tjJNxBTbfCAdgg',
+      projectID: 'flutter-firebase-plugins',
     ),
   );
   final FirebaseStorage storage = FirebaseStorage(
-      app: app, storageBucket: 'gs://flutter-firebase-plugins.appspot.com');
-  runApp(MyApp(storage: storage));
+      app: app, storageBucket: 'gs://broke-c38d3.appspot.com');
+  return storage;
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({this.storage});
-  final FirebaseStorage storage;
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Storage Example',
-      home: MyHomePage(storage: storage),
+      home: UploadPage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({this.storage});
-  final FirebaseStorage storage;
+class UploadPage extends StatefulWidget {
+  final FirebaseStorage storage = FirebaseStorage();
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _UploadPageState createState() => _UploadPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _UploadPageState extends State<UploadPage> {
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   List<StorageUploadTask> _tasks = <StorageUploadTask>[];
 
