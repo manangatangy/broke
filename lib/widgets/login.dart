@@ -1,4 +1,3 @@
-import 'package:broke/models/firebase_model.dart';
 import 'package:broke/services/sign_in.dart';
 import 'package:flutter/material.dart';
 
@@ -24,8 +23,6 @@ class _LoginScreenState extends State<LoginScreen> {
   void _onSignIn(bool isSignedIn) async {
     print("LoginScreenState isSignedIn => $isSignedIn");
     if (isSignedIn) {
-//      await FirebaseModel.of(context).configure();
-//      firebaseStorage = FirebaseStorage();
       // This removes the current route (without rebuilding it).
       Navigator.of(context).pushNamedAndRemoveUntil(widget.homeRoute, (Route<dynamic> route) => false);
     } else {

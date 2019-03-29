@@ -1,7 +1,7 @@
 
 import 'package:flutter/widgets.dart';
 
-// ref: https://twitter.com/jcocaramos/status/1105290694992777216
+/// ref: https://twitter.com/jcocaramos/status/1105290694992777216
 
 typedef ConditionalContainerBuilder<S> = Widget Function(BuildContext context);
 
@@ -33,5 +33,4 @@ Widget test(String userName) {
     condition: userName != null,
     builder: (context) => Text(userName),
   );
-
 }

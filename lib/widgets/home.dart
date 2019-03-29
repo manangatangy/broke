@@ -23,8 +23,7 @@ class HomeScreenState extends State<HomeScreen> {
     return Stack(
       children: [
         buildContent(context),
-//        _buildTabView(),
-        _busyIndicator(),
+        busyIndicator(),
       ],
     );
   }
@@ -89,7 +88,7 @@ class HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _busyIndicator() {
+  Widget busyIndicator() {
     if (!isBusy) {
       return Container();
     }
