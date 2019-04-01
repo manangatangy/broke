@@ -1437,6 +1437,13 @@
       "mCreated": "21 MAR 2019",
       "mGirl": "RACHEL",
       "mSpendType": "Money"
+    },
+    {
+      "mAmount": 755,
+      "mCreated": "1 APR 2019",
+      "mGirl": "NINA",
+      "mSpendType": "Computer",
+      "note": "Adobe fees 12 months x $45.30 = $543.60, 11 months x $19.24 = $211.64"
     }
   ]
 }
