@@ -1451,6 +1451,19 @@
       "mGirl": "RACHEL",
       "note": "Some materials",
       "mSpendType": "Course"
+    },
+    {
+      "mAmount": 46,
+      "mCreated": "16 APR 2019",
+      "mGirl": "RACHEL",
+      "note": "Some things for school",
+      "mSpendType": "Course"
+    },
+    {
+      "mAmount": 40,
+      "mCreated": "18 MAR 2019",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
     }
   ]
 }
