@@ -31,7 +31,7 @@ class HomeScreenState extends State<HomeScreen> {
 
   Widget buildContent(BuildContext context) {
     return StreamBuilder<CatSpendGroups>(
-        stream: categorisedSpendSnapshots("RACHEL"),
+        stream: categorisedSpendGroupsStream("RACHEL"),
         builder: (BuildContext context, AsyncSnapshot<CatSpendGroups> categorisedSpendSnapshot) {
           if (categorisedSpendSnapshot.hasError) return Text('Error: ${categorisedSpendSnapshot.error}');
           if (!categorisedSpendSnapshot.hasData) return Text('Loading...');

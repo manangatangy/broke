@@ -24,7 +24,7 @@ class SpendGroup {
 
 /// Return a stream of [CatSpendGroups] from the "spends" collection for the specified [face].
 /// This class has an [ImageIcon] and a map (keyed by the category) of [Spend]s for that face and category.
-Stream<CatSpendGroups> categorisedSpendSnapshots(String face) {
+Stream<CatSpendGroups> categorisedSpendGroupsStream(String face) {
   Stream<QuerySnapshot> snapshots = Firestore.instance.collection('spends').where("face", isEqualTo: face).snapshots();
   
   return snapshots.map<CatSpendGroups>((QuerySnapshot snapshot) {
