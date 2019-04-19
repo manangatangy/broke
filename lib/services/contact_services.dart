@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:broke/models/contact.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
@@ -22,8 +24,8 @@ class ContactService {
     }
   }
 
-  Contact _fromJson(String json) {
-    Map<String, dynamic> map = JSON.decode(json);
+  Contact _fromJson(String jsonIn) {
+    Map<String, dynamic> map = json.decode(jsonIn);
     var contact = new Contact();
     contact.name = map['name'];
     contact.dob = new DateFormat.yMd().parseStrict(map['dob']);
@@ -40,7 +42,7 @@ class ContactService {
     mapData["phone"] = contact.phone;
     mapData["email"] = contact.email;
     mapData["favoriteColor"] = contact.favoriteColor;
-    String json = JSON.encode(mapData);
-    return json;
+    String jsonOut = json.encode(mapData);
+    return jsonOut;
   }
 }
