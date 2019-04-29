@@ -1464,6 +1464,12 @@
       "mCreated": "18 MAR 2019",
       "mGirl": "RACHEL",
       "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 150,
+      "mCreated": "29 APR 2019",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Tigrettes"
     }
   ]
 }
