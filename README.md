@@ -1,6 +1,6 @@
 # Broke
 
-Record and browse all the times you give $ to you kids.
+Record and browse all the times you give $ to your kids.
 
 ### Project Structure
 

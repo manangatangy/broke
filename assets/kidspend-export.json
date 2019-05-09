@@ -1437,6 +1437,46 @@
       "mCreated": "21 MAR 2019",
       "mGirl": "RACHEL",
       "mSpendType": "Money"
+    },
+    {
+      "mAmount": 755,
+      "mCreated": "1 APR 2019",
+      "mGirl": "NINA",
+      "mSpendType": "Computer",
+      "note": "Adobe fees 12 months x $45.30 = $543.60, 11 months x $19.24 = $211.64"
+    },
+    {
+      "mAmount": 40,
+      "mCreated": "8 APR 2019",
+      "mGirl": "RACHEL",
+      "note": "Some materials",
+      "mSpendType": "Course"
+    },
+    {
+      "mAmount": 46,
+      "mCreated": "16 APR 2019",
+      "mGirl": "RACHEL",
+      "note": "Some things for school",
+      "mSpendType": "Course"
+    },
+    {
+      "mAmount": 40,
+      "mCreated": "18 MAR 2019",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 150,
+      "mCreated": "29 APR 2019",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Tigrettes"
+    },
+    {
+      "mAmount": 25,
+      "mCreated": "6 MAY 2019",
+      "mGirl": "RACHEL",
+      "note": "More stuff for school",
+      "mSpendType": "Course"
     }
   ]
 }

@@ -5,6 +5,7 @@ import 'package:broke/widgets/firebase_storage_example.dart';
 import 'package:broke/widgets/home.dart';
 import 'package:broke/widgets/login.dart';
 import 'package:broke/widgets/settings.dart';
+import 'package:broke/widgets/spend_form.dart';
 import 'package:broke/widgets/theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -34,13 +35,17 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Recipes',
             theme: buildTheme(),
-            initialRoute: 'login',
+            // An initialRoute of login will cause a login/check which then routes to homeRoute
+            // This login/check is avoided by setting a different initialRoute.
+//            initialRoute: 'login',
+            initialRoute: 'spendForm',
             routes: {
               'login': (context) => LoginScreen(homeRoute: homeRoute,),
               'email': (context) => EmailLoginScreen(homeRoute: homeRoute,),
               '/': (context) => HomeScreen(),
               'upload': (context) => UploadPage(),
               'settings': (context) => SettingsScreen(),
+              'spendForm': (context) => SpendForm(title: 'Title',),
             },
           )
       ),
