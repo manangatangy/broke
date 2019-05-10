@@ -1477,6 +1477,13 @@
       "mGirl": "RACHEL",
       "note": "More stuff for school",
       "mSpendType": "Course"
+    },
+    {
+      "mAmount": 170,
+      "mCreated": "9 MAY 2019",
+      "mGirl": "RACHEL",
+      "note": "MAC makeup sale",
+      "mSpendType": "Cosmetics"
     }
   ]
 }
