@@ -1,4 +1,5 @@
 import 'package:broke/services/repo.dart';
+import 'package:broke/services/bloc.dart';
 import 'package:broke/models/spend.dart';
 import 'package:broke/widgets/fancy_fab.dart';
 import 'package:broke/widgets/spend_card.dart';
@@ -28,10 +29,18 @@ class HomeScreenState extends State<HomeScreen> {
     );
   }
 
-
   Widget buildContent(BuildContext context) {
+    final bloc = Bloc.of(context);
+    return StreamBuilder<String>(
+      stream: bloc.faceDataStream,
+      initialData: "RACHEL",
+      builder: (context, snapshot) => buildContent2(context, snapshot.data),
+    );
+  }
+
+  Widget buildContent2(BuildContext context, String face) {
     return StreamBuilder<CatSpendGroups>(
-        stream: categorisedSpendGroupsStream("RACHEL"),
+        stream: categorisedSpendGroupsStream(face),
         builder: (BuildContext context, AsyncSnapshot<CatSpendGroups> categorisedSpendSnapshot) {
           if (categorisedSpendSnapshot.hasError) return Text('Error: ${categorisedSpendSnapshot.error}');
           if (!categorisedSpendSnapshot.hasData) return Text('Loading...');
@@ -42,7 +51,7 @@ class HomeScreenState extends State<HomeScreen> {
             length: catSpends.keys.length,
             child: Scaffold(
               appBar: AppBar(
-                title: Text('Navigation example'),
+                title: Text('Spends: ' + face),
               ),
               floatingActionButton: FancyFab(
 

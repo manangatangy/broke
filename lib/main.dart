@@ -37,8 +37,8 @@ class MyApp extends StatelessWidget {
             theme: buildTheme(),
             // An initialRoute of login will cause a login/check which then routes to homeRoute
             // This login/check is avoided by setting a different initialRoute.
-//            initialRoute: 'login',
-            initialRoute: 'spendForm',
+            initialRoute: 'login',
+//            initialRoute: 'spendForm',
             routes: {
               'login': (context) => LoginScreen(homeRoute: homeRoute,),
               'email': (context) => EmailLoginScreen(homeRoute: homeRoute,),
