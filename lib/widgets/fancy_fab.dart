@@ -1,13 +1,21 @@
 
+import 'package:broke/services/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
+class FaceData {
+  final String name;
+  final double offset;
+  FaceData({this.name, this.offset});
+}
 
 class FancyFab extends StatefulWidget {
   final Function() onPressed;
   final String tooltip;
   final IconData icon;
+  final List<String> faces;
 
-  FancyFab({this.onPressed, this.tooltip, this.icon});
+  FancyFab({this.onPressed, this.tooltip, this.icon, this.faces});
 
   @override
   _FancyFabState createState() => _FancyFabState();
@@ -22,9 +30,16 @@ class _FancyFabState extends State<FancyFab>
   Animation<double> _translateButton;
   Curve _curve = Curves.easeOut;
   double _fabHeight = 56.0;
+  List<FaceData> faceDataList = [];
 
   @override
   initState() {
+    for (var i = widget.faces.length; i > 0; i--) {
+      faceDataList.add(FaceData(
+        name: widget.faces[i - 1],
+        offset: i.toDouble(),   // Last iteration value will be 1.0
+      ));
+    }
     _animationController =
     AnimationController(vsync: this, duration: Duration(milliseconds: 500))
       ..addListener(() {
@@ -75,7 +90,11 @@ class _FancyFabState extends State<FancyFab>
   Widget add() {
     return Container(
       child: FloatingActionButton(
-        onPressed: null,
+        heroTag: 'addTag',
+        onPressed: () {
+          animate();
+          Navigator.pushNamed(context, 'spendForm');
+        },
         tooltip: 'Add',
         child: Icon(Icons.add),
       ),
@@ -105,12 +124,35 @@ class _FancyFabState extends State<FancyFab>
   Widget toggle() {
     return Container(
       child: FloatingActionButton(
+        heroTag: 'toggleTag',
         backgroundColor: _buttonColor.value,
         onPressed: animate,
         tooltip: 'Toggle',
         child: AnimatedIcon(
           icon: AnimatedIcons.menu_close,
           progress: _animateIcon,
+        ),
+      ),
+    );
+  }
+
+
+  Widget faceButton(double offset, String face) {
+    return Transform(
+      transform: Matrix4.translationValues(
+        0.0,
+        _translateButton.value * offset,
+        0.0,
+      ),
+      child: Container(
+        child: FloatingActionButton(
+          heroTag: face,
+          onPressed: () {
+            Bloc.of(context).setFace(face);
+            animate();
+          },
+          child: Text(face),
+//          child: Icon(Icons.inbox),
         ),
       ),
     );
@@ -124,27 +166,12 @@ class _FancyFabState extends State<FancyFab>
         Transform(
           transform: Matrix4.translationValues(
             0.0,
-            _translateButton.value * 3.0,
+            _translateButton.value * (faceDataList.length + 1),
             0.0,
           ),
           child: add(),
         ),
-        Transform(
-          transform: Matrix4.translationValues(
-            0.0,
-            _translateButton.value * 2.0,
-            0.0,
-          ),
-          child: image(),
-        ),
-        Transform(
-          transform: Matrix4.translationValues(
-            0.0,
-            _translateButton.value,
-            0.0,
-          ),
-          child: inbox(),
-        ),
+        ...faceDataList.map((faceData) => faceButton(faceData.offset, faceData.name)).toList(),
         toggle(),
       ],
     );

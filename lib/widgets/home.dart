@@ -54,7 +54,7 @@ class HomeScreenState extends State<HomeScreen> {
                 title: Text('Spends: ' + face),
               ),
               floatingActionButton: FancyFab(
-
+                faces: ['CLAIRE', 'NINA', 'RACHEL'],
               ),
               body: Padding(
                 padding: const EdgeInsets.all(5.0),
