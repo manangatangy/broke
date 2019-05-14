@@ -137,3 +137,10 @@ class MyApp extends StatelessWidget {
 // <div>Icons made by <a href="https://www.flaticon.com/authors/nikita-golubev" title="Nikita Golubev">Nikita Golubev</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 // <div>Icons made by <a href="https://www.flaticon.com/authors/monkik" title="monkik">monkik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 //
+
+// https://medium.com/flutterpub/sample-form-part-1-flutter-35664d57b0e5
+// https://flutter.dev/docs/cookbook/forms
+// https://codingwithjoe.com/building-forms-with-flutter/
+// https://flutter.dev/docs/cookbook/forms/text-field-changes
+// https://flutter.dev/docs/cookbook/forms/focus
+// 
