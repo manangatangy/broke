@@ -7,17 +7,16 @@ import 'package:rxdart/subjects.dart';
 class Bloc extends Model {
   static Bloc of(BuildContext context) => ScopedModel.of<Bloc>(context);
 
+  final BehaviorSubject<String>_faceDataSubject = BehaviorSubject<String>();
 
-  final BehaviorSubject<String>_statusDataSubject = BehaviorSubject<String>();
+  Stream<String> get faceDataStream => _faceDataSubject.stream;
 
-  Stream<String> get statusDataStream => _statusDataSubject.stream;
-
-  void doIt() {
-    _statusDataSubject.add("event");
+  void setFace(String face) {
+    _faceDataSubject.add(face);
   }
 
   void dispose() {
-    _statusDataSubject.close();
+    _faceDataSubject.close();
   }
 
 }
