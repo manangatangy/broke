@@ -1461,7 +1461,7 @@
     },
     {
       "mAmount": 40,
-      "mCreated": "18 MAR 2019",
+      "mCreated": "18 APR 2019",
       "mGirl": "RACHEL",
       "mSpendType": "Phone"
     },
@@ -1484,6 +1484,12 @@
       "mGirl": "RACHEL",
       "note": "MAC makeup sale",
       "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 40,
+      "mCreated": "15 MAY 2019",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
     }
   ]
 }
