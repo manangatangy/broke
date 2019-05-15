@@ -40,10 +40,21 @@ class HomeScreenState extends State<HomeScreen> {
 
   Widget buildContent2(BuildContext context, String face) {
     return StreamBuilder<CatSpendGroups>(
+        key: Key(face),
         stream: categorisedSpendGroupsStream(face),
         builder: (BuildContext context, AsyncSnapshot<CatSpendGroups> categorisedSpendSnapshot) {
           if (categorisedSpendSnapshot.hasError) return Text('Error: ${categorisedSpendSnapshot.error}');
-          if (!categorisedSpendSnapshot.hasData) return Text('Loading...');
+          if (!categorisedSpendSnapshot.hasData) {
+            return Center(
+              child: Container(
+                width: 80.0,
+                height: 80.0,
+                child: CircularProgressIndicator(
+                  strokeWidth: 7,
+                ),
+              ),
+            );
+          }
 
           Map<String, SpendGroup> catSpends = categorisedSpendSnapshot.data.catGroups;
 
@@ -82,11 +93,11 @@ class HomeScreenState extends State<HomeScreen> {
                   isScrollable: true,
                   tabs: catSpends.keys.map((String cat) =>
                       Tab(
-                          text: cat.toUpperCase(),
-                          icon: ImageIcon(
-                            catSpends[cat].assetImage,
-                            size: 32.0,
-                          )
+                        text: cat.toUpperCase(),
+                        icon: ImageIcon(
+                          catSpends[cat].assetImage,
+                          size: 32.0,
+                        )
                       ),
                   ).toList(),
                 ),

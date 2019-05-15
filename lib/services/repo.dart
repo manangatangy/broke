@@ -25,13 +25,12 @@ class SpendGroup {
 /// Return a stream of [CatSpendGroups] from the "spends" collection for the specified [face].
 /// This class has an [ImageIcon] and a map (keyed by the category) of [Spend]s for that face and category.
 Stream<CatSpendGroups> categorisedSpendGroupsStream(String face) {
+  print('categorisedSpendGroupsStream.face=$face');
   Stream<QuerySnapshot> snapshots = Firestore.instance.collection('spends').where("face", isEqualTo: face).snapshots();
-  
+
   return snapshots.map<CatSpendGroups>((QuerySnapshot snapshot) {
-    
     List<DocumentSnapshot> documents = snapshot.documents;
     var catGroups =  Map<String, SpendGroup>();
-    
     documents.forEach((document) {
       var spend = Spend.fromMap(document.data, document.documentID);
       if (!catGroups.containsKey(spend.category)) {
@@ -42,6 +41,7 @@ Stream<CatSpendGroups> categorisedSpendGroupsStream(String face) {
       }
       catGroups[spend.category].spends.add(spend);
     });
+    print('categorisedSpendGroupsStream.CatSpendGroups=[$face, length=${catGroups.length}]');
     return CatSpendGroups(
       face: face,
       catGroups: catGroups,
