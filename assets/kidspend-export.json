@@ -1497,6 +1497,12 @@
       "mGirl": "RACHEL",
       "note": "Makeups for Rock-ebony",
       "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 10000,
+      "mCreated": "24 MAY 2019",
+      "mGirl": "CLAIRE",
+      "mSpendType": "Money"
     }
   ]
 }
