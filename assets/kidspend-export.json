@@ -1502,6 +1502,14 @@
       "mAmount": 10000,
       "mCreated": "24 MAY 2019",
       "mGirl": "CLAIRE",
+      "note": "First payment for house-help",
+      "mSpendType": "Money"
+    },
+    {
+      "mAmount": 10000,
+      "mCreated": "26 MAY 2019",
+      "mGirl": "CLAIRE",
+      "note": "Second payment for house-help",
       "mSpendType": "Money"
     }
   ]
