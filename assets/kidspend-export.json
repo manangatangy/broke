@@ -1511,6 +1511,13 @@
       "mGirl": "CLAIRE",
       "note": "Second payment for house-help",
       "mSpendType": "Money"
+    },
+    {
+      "mAmount": 10000,
+      "mCreated": "28 MAY 2019",
+      "mGirl": "CLAIRE",
+      "note": "Third payment for house-help",
+      "mSpendType": "Money"
     }
   ]
 }
