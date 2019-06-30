@@ -1518,6 +1518,20 @@
       "mGirl": "CLAIRE",
       "note": "Third payment for house-help",
       "mSpendType": "Money"
+    },
+    {
+      "mAmount": 40,
+      "mCreated": "30 JUN 2019",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 79,
+      "mCreated": "30 JUN 2019",
+      "mGirl": "RACHEL",
+      "note": "Wigs for school",
+      "mSpendType": "TafeCourse"
     }
+
   ]
 }
