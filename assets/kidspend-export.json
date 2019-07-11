@@ -1531,6 +1531,12 @@
       "mGirl": "RACHEL",
       "note": "Wigs for school",
       "mSpendType": "TafeCourse"
+    },
+    {
+      "mAmount": 40,
+      "mCreated": "11 JUL 2019",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
     }
 
   ]
