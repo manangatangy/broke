@@ -1537,6 +1537,20 @@
       "mCreated": "11 JUL 2019",
       "mGirl": "RACHEL",
       "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 32,
+      "mCreated": "14 JUL 2019",
+      "mGirl": "RACHEL",
+      "note": "Bald cap for school",
+      "mSpendType": "TafeCourse"
+    },
+    {
+      "mAmount": 22,
+      "mCreated": "16 JUL 2019",
+      "mGirl": "RACHEL",
+      "note": "Silicone for school",
+      "mSpendType": "TafeCourse"
     }
 
   ]
