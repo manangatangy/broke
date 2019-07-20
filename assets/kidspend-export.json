@@ -1551,6 +1551,13 @@
       "mGirl": "RACHEL",
       "note": "Silicone for school",
       "mSpendType": "TafeCourse"
+    },
+    {
+      "mAmount": 50,
+      "mCreated": "20 JUL 2019",
+      "mGirl": "RACHEL",
+      "note": "More stuff for school",
+      "mSpendType": "TafeCourse"
     }
 
   ]
