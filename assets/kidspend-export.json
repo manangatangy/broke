@@ -1574,9 +1574,16 @@
     },
     {
       "mAmount": 40,
-      "mCreated": "29 AUG 2019",
+      "mCreated": "20 AUG 2019",
       "mGirl": "RACHEL",
       "note": "Something for school",
+      "mSpendType": "TafeCourse"
+    },
+    {
+      "mAmount": 20,
+      "mCreated": "29 AUG 2019",
+      "mGirl": "RACHEL",
+      "note": "More stuff for school",
       "mSpendType": "TafeCourse"
     }
 
