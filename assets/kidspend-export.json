@@ -1585,6 +1585,19 @@
       "mGirl": "RACHEL",
       "note": "More stuff for school",
       "mSpendType": "TafeCourse"
+    },
+    {
+      "mAmount": 75,
+      "mCreated": "11 SEP 2019",
+      "mGirl": "RACHEL",
+      "note": "Half a pair of adidas",
+      "mSpendType": "Clothes"
+    },
+    {
+      "mAmount": 40,
+      "mCreated": "12 SEP 2019",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
     }
 
   ]
