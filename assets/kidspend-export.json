@@ -1624,6 +1624,13 @@
       "mCreated": "12 OCT 2019",
       "mGirl": "RACHEL",
       "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 80,
+      "mCreated": "29 OCT 2019",
+      "mGirl": "RACHEL",
+      "note": "Makeup for school",
+      "mSpendType": "TafeCourse"
     }
   ]
 }
