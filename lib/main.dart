@@ -21,8 +21,8 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   // The homeRoute is the post-login/check landing screen.
-  final String homeRoute = '/';
-//  final String homeRoute = 'settings';
+//  final String homeRoute = '/';
+  final String homeRoute = 'settings';
 //  final String homeRoute = 'upload';
 
   @override

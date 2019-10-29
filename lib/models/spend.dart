@@ -60,6 +60,30 @@ class Spend {
     return map;
   }
 
+  static void analyseImportFile() async {
+    String contents = await rootBundle.loadString('assets/kidspend-export.json');
+    Map<String, dynamic> parsedJson = json.decode(contents);
+    List<dynamic> list = parsedJson['spends'];
+    print("processing ${list.length} records from json file...");
+    Map<String, int> amountMap = Map<String, int>();
+    Map<String, int> countsMap = Map<String, int>();
+
+    for (int i = 0; i < list.length; i++) {
+      Map<String, dynamic> map = list[i];
+      Spend spend = Spend.fromKidspend(map);
+      if (!amountMap.containsKey(spend.face)) {
+        amountMap[spend.face] = 0;
+        countsMap[spend.face] = 0;
+      }
+      amountMap[spend.face] += spend.amount;
+      countsMap[spend.face] += 1;
+    }
+
+    amountMap.forEach((String key, int value) {
+      print("name:$key  count:${countsMap[key]}  amount:${amountMap[key]}");
+    });
+  }
+
   /// Reads the json from the exported kidspend asset and adds each record
   /// to the firebase "spends" collection (which is first emptied).
   static void importFromAssets() async {
@@ -118,7 +142,7 @@ class Spend {
       }
       int year = int.parse(fields[2]);
       dateTime = DateTime(year, month, day);
-      print("parsed $kidspendDate => $dateTime");
+      //print("parsed $kidspendDate => $dateTime");
     }
     return dateTime;
   }

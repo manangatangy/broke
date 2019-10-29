@@ -50,6 +50,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
           child: Text('Delete spends and import from assets'),
           onPressed: () => Spend.importFromAssets(),
         ),
+        RaisedButton(
+          child: Text('Analyse import from assets'),
+          onPressed: () => Spend.analyseImportFile(),
+        ),
       ],
     );
   }
