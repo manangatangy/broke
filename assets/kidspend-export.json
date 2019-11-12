@@ -1631,6 +1631,12 @@
       "mGirl": "RACHEL",
       "note": "Makeup for school",
       "mSpendType": "TafeCourse"
+    },
+    {
+      "mAmount": 40,
+      "mCreated": "9 NOV 2019",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
     }
   ]
 }
