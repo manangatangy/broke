@@ -1650,6 +1650,12 @@
       "mCreated": "30 NOV 2019",
       "mGirl": "RACHEL",
       "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 40,
+      "mCreated": "9 DEC 2019",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
     }
   ]
 }
