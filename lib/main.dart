@@ -14,7 +14,6 @@ void main() async {
   // Ref: https://stackoverflow.com/questions/51112963/how-to-configure-firebase-firestore-settings-with-flutter
   // Seems to be resolved by 31/12/2019, using cloud-firestore-0.10.1
   runApp(MyApp());
-  // xoox
 }
 
 class MyApp extends StatelessWidget {
