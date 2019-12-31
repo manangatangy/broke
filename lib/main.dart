@@ -7,22 +7,19 @@ import 'package:broke/widgets/login.dart';
 import 'package:broke/widgets/settings.dart';
 import 'package:broke/widgets/spend_form.dart';
 import 'package:broke/widgets/theme.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 void main() async {
   // Ref: https://stackoverflow.com/questions/51112963/how-to-configure-firebase-firestore-settings-with-flutter
-  final Firestore firestore = Firestore();
-  await firestore.settings(timestampsInSnapshotsEnabled: true);
-
+  // Seems to be resolved by 31/12/2019, using cloud-firestore-0.10.1
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   // The homeRoute is the post-login/check landing screen.
-//  final String homeRoute = '/';
-  final String homeRoute = 'settings';
+  final String homeRoute = '/';
+//  final String homeRoute = 'settings';
 //  final String homeRoute = 'upload';
 
   @override
