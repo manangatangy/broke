@@ -1656,6 +1656,27 @@
       "mCreated": "9 DEC 2019",
       "mGirl": "RACHEL",
       "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 50,
+      "mCreated": "1 JAN 2020",
+      "mGirl": "CLAIRE",
+      "note": "Half house cleaning",
+      "mSpendType": "Money"
+    },
+    {
+      "mAmount": 50,
+      "mCreated": "1 JAN 2020",
+      "mGirl": "NINA",
+      "note": "Half house cleaning",
+      "mSpendType": "Money"
+    },
+    {
+      "mAmount": 88,
+      "mCreated": "1 JAN 2020",
+      "mGirl": "RACHEL",
+      "mSpendType": "Cosmetics"
     }
+
   ]
 }
