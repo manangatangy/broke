@@ -1676,6 +1676,13 @@
       "mCreated": "1 JAN 2020",
       "mGirl": "RACHEL",
       "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 70,
+      "mCreated": "4 JAN 2020",
+      "mGirl": "RACHEL",
+      "note": "Some sort of light",
+      "mSpendType": "Cosmetics"
     }
 
   ]
