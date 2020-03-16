@@ -1690,6 +1690,24 @@
       "mGirl": "RACHEL",
       "note": "Some sort of light",
       "mSpendType": "Cosmetics"
+    },
+    {
+      "mAmount": 40,
+      "mCreated": "9 JAN 2020",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 40,
+      "mCreated": "9 FEB 2020",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
+    },
+    {
+      "mAmount": 40,
+      "mCreated": "9 MAR 2020",
+      "mGirl": "RACHEL",
+      "mSpendType": "Phone"
     }
 
   ]
